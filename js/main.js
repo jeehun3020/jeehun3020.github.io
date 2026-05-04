@@ -149,6 +149,109 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==============================
+   Typewriter rotator
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.querySelector('[data-typewriter]');
+  if (!el) return;
+  const phrases = JSON.parse(el.dataset.typewriter);
+  let pIdx = 0, cIdx = 0, deleting = false;
+
+  function tick() {
+    const word = phrases[pIdx];
+    el.textContent = word.slice(0, cIdx);
+    let delay = deleting ? 35 : 75;
+
+    if (!deleting && cIdx === word.length) {
+      delay = 1600;
+      deleting = true;
+    } else if (deleting && cIdx === 0) {
+      deleting = false;
+      pIdx = (pIdx + 1) % phrases.length;
+      delay = 280;
+    } else {
+      cIdx += deleting ? -1 : 1;
+    }
+    setTimeout(tick, delay);
+  }
+  tick();
+});
+
+/* ==============================
+   Mouse-tracking spotlight
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-spotlight]').forEach((el) => {
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
+      el.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
+    });
+  });
+});
+
+/* ==============================
+   Animated counters
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('[data-counter]');
+  if (!counters.length) return;
+
+  function animate(el) {
+    const target = parseFloat(el.dataset.counter);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const start = performance.now();
+
+    function step(now) {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const value = (target * eased).toFixed(decimals);
+      el.textContent = value + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach((el) => io.observe(el));
+  } else {
+    counters.forEach(animate);
+  }
+});
+
+/* ==============================
+   Tilt cards (3D mouse parallax)
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!isFinePointer) return;
+
+  document.querySelectorAll('[data-tilt]').forEach((el) => {
+    const max = 8; // degrees
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform =
+        `perspective(900px) rotateX(${(-py * max).toFixed(2)}deg) rotateY(${(px * max).toFixed(2)}deg) translateY(-2px)`;
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.transform = '';
+    });
+  });
+});
+
+/* ==============================
    Active nav highlighting
    ============================== */
 document.addEventListener('DOMContentLoaded', () => {

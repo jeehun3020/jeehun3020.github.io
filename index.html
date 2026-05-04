@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Jihoon Jeong — Portfolio</title>
-<meta name="description" content="Jihoon Jeong — Undergraduate Researcher in Computer Vision &amp; AI. Projects, awards, programs, and publications." />
+<meta name="description" content="Jihoon Jeong — Undergraduate Researcher in Computer Vision &amp; AI." />
 <link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -58,11 +58,67 @@
   <main class="main">
     <div class="container">
 
-      <!-- Hero -->
-      <section class="hero reveal">
-        <span class="eyebrow">Research Focus</span>
-        <h2>Bridging theoretical robustness and real-world deployment.</h2>
-        <p>Building efficient computer vision systems for intelligent, on-device AI.</p>
+      <!-- Interactive Hero -->
+      <section class="hero-xl" data-spotlight>
+        <span class="spotlight"></span>
+        <div class="hero-eyebrow"><span class="pulse"></span> Available for research collaboration</div>
+
+        <h1 class="hero-name">
+          Hi, I'm <span class="grad">Jihoon Jeong</span>
+        </h1>
+
+        <p class="hero-roles">
+          I'm a
+          <span class="typed" data-typewriter='[
+            "Computer Vision Researcher.",
+            "AI Engineer.",
+            "Vision-Language Multimodal Learner.",
+            "Efficient On-Device AI Builder.",
+            "Lifelong Learner."
+          ]'></span>
+        </p>
+
+        <p class="hero-bio">
+          Bachelor student in <b>AI Computer Engineering at Kyonggi University</b>,
+          designing AI systems that are both theoretically grounded and practically
+          deployable — from satellite-driven forecasting to real-time vision in
+          intelligent environments.
+        </p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="assets/Jihoon_Jeong_CV.pdf" download>📄 Download CV</a>
+          <a class="btn" href="projects.html">🚀 View Projects</a>
+          <a class="btn" href="mailto:jeehun3020@gmail.com">✉️ Get in touch</a>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll</span>
+          <span class="arrow"></span>
+        </div>
+      </section>
+
+      <!-- Stats / Counters -->
+      <section class="stats reveal" style="margin-top:32px;">
+        <div class="stat" data-tilt>
+          <div class="stat-value"><span data-counter="4.49" data-decimals="2" data-suffix=" / 4.5">0</span></div>
+          <div class="stat-label">GPA</div>
+        </div>
+        <div class="stat" data-tilt>
+          <div class="stat-value"><span data-counter="7" data-suffix="+">0</span></div>
+          <div class="stat-label">Awards</div>
+        </div>
+        <div class="stat" data-tilt>
+          <div class="stat-value"><span data-counter="4" data-suffix="">0</span></div>
+          <div class="stat-label">Major Projects</div>
+        </div>
+        <div class="stat" data-tilt>
+          <div class="stat-value"><span data-counter="2" data-suffix="">0</span></div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat" data-tilt>
+          <div class="stat-value"><span data-counter="6" data-suffix="">0</span></div>
+          <div class="stat-label">Certifications</div>
+        </div>
       </section>
 
       <!-- About -->
@@ -70,15 +126,21 @@
         <h2>👤 About Me</h2>
         <p>
           I am a Bachelor student in <b>AI Computer Engineering at Kyonggi University</b>,
-          with research interests in Computer Vision, Image Segmentation, and Efficient Deep
-          Learning. I aim to design AI systems that are both theoretically grounded and
-          practically deployable.
+          with research interests in Computer Vision, Image Segmentation, and Efficient
+          Deep Learning. I've worked on projects ranging from <b>NASA TEMPO satellite-based
+          air quality forecasting</b> to <b>real-time facial-behavior analysis in
+          intelligent study rooms</b>, always aiming for systems that bridge theoretical
+          robustness with practical deployment.
+        </p>
+        <p>
+          Beyond research, I genuinely enjoy <b>shipping things</b> — from prototyping ideas
+          at hackathons to translating findings into demos people can actually use.
         </p>
       </section>
 
       <!-- Skills + Education -->
       <section class="section col-2 reveal">
-        <div class="card">
+        <div class="card" data-tilt>
           <h3>🛠 Technical Skills</h3>
           <div class="skill-label">Languages</div>
           <ul class="skill-list">
@@ -90,62 +152,26 @@
           </ul>
           <div class="skill-label">Research Interests</div>
           <div class="tag-row">
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Image &amp; Semantic Segmentation</span>
-            <span class="tag">Vision-Language Multimodal Learning</span>
-            <span class="tag">Efficient / On-Device AI</span>
+            <span class="tag shimmer">Computer Vision</span>
+            <span class="tag shimmer">Image &amp; Semantic Segmentation</span>
+            <span class="tag shimmer">Vision-Language Multimodal Learning</span>
+            <span class="tag shimmer">Efficient / On-Device AI</span>
           </div>
         </div>
 
-        <div class="card">
+        <div class="card" data-tilt>
           <h3>🎓 Education</h3>
           <p style="margin-bottom:6px;"><b>Kyonggi University</b><br/>Department of AI Computer Engineering</p>
           <ul class="skill-list" style="color:var(--text-muted);">
             <li>Bachelor Student (Mar. 2021 – Present)</li>
             <li>GPA: <b style="color:var(--text);">4.49 / 4.5</b></li>
           </ul>
-        </div>
-      </section>
-
-      <!-- Featured project -->
-      <section class="section reveal">
-        <h2>⭐ Featured Project</h2>
-        <a href="projects.html" class="card" style="display:block; text-decoration:none; color:inherit;">
-          <h3 style="color:var(--accent);">🎯 FocusAI — Intelligent Study Room System</h3>
-          <p>
-            Vision-based learning concentration analysis system using facial expression
-            and behavior recognition. Designed for real-world deployment in intelligent
-            study environments.
-          </p>
+          <div class="skill-label" style="margin-top:18px;">Focus Areas</div>
           <div class="tag-row">
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Behavior Recognition</span>
-            <span class="tag">Real-Time</span>
+            <span class="tag shimmer">AI</span>
+            <span class="tag shimmer">Deep Learning</span>
+            <span class="tag shimmer">Software Engineering</span>
           </div>
-          <p style="margin-top:14px; color:var(--accent); font-weight:600;">View Project Details →</p>
-        </a>
-      </section>
-
-      <!-- Explore -->
-      <section class="section reveal">
-        <h2>🔗 Explore</h2>
-        <div class="card-grid">
-          <a href="projects.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
-            <h3 style="color:var(--accent);">🚀 Projects</h3>
-            <p class="meta">Research and AI system development projects.</p>
-          </a>
-          <a href="programs.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
-            <h3 style="color:var(--accent);">🎓 Programs</h3>
-            <p class="meta">International programs and mentorship experiences.</p>
-          </a>
-          <a href="awards.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
-            <h3 style="color:var(--accent);">🏆 Awards</h3>
-            <p class="meta">Academic awards, competitions, and scholarships.</p>
-          </a>
-          <a href="publications.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
-            <h3 style="color:var(--accent);">📄 Publications</h3>
-            <p class="meta">Peer-reviewed conference papers and publications.</p>
-          </a>
         </div>
       </section>
 
