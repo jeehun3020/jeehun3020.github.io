@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Awards — Jihoon Jeong</title>
+<link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+<style>
+  /* Awards-specific accordion */
+  .award {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .award:hover {
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+    box-shadow: var(--shadow-sm);
+  }
+  .award summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .award summary::-webkit-details-marker { display: none; }
+  .award summary::after {
+    content: "▾";
+    margin-left: auto;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+  }
+  .award[open] summary::after { transform: rotate(180deg); }
+  .award .body {
+    padding: 0 22px 22px;
+  }
+  .award .meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0 0 12px;
+  }
+  .award .body img {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    cursor: zoom-in;
+    margin-top: 8px;
+  }
+  .award-icon {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-btn" aria-label="Toggle menu">☰</button>
+<button class="theme-toggle" aria-label="Toggle theme">☾</button>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img class="profile-img" src="assets/profile.jpg" alt="Jihoon Jeong" />
+      <h2 class="profile-name">Jihoon Jeong</h2>
+      <p class="profile-role">Undergraduate Researcher · Computer Vision &amp; AI</p>
+    </div>
+    <nav class="sidebar-section">
+      <ul class="sidebar-nav">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="projects.html">🚀 Projects</a></li>
+        <li><a href="awards.html">🏆 Awards</a></li>
+        <li><a href="programs.html">🎓 Programs</a></li>
+        <li><a href="certifications.html">📜 Certifications</a></li>
+        <li><a href="publications.html">📄 Publications</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-section">
+      <div class="contact-item"><span class="icon">📞</span> +82-10-9260-6744</div>
+      <div class="contact-item"><span class="icon">✉️</span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
+      <div class="contact-item"><span class="icon">🐙</span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
+      <div class="sidebar-info">Building efficient AI systems that transform complex visual data into practical value.</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="skill-label" style="margin-top:0;">Curriculum Vitae</div>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download>📄 Download CV</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      <header class="page-header reveal">
+        <h1>🏆 Awards</h1>
+        <p class="subtitle">Academic awards, competitions, and scholarships.</p>
+      </header>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">🥇</span> 2025 SW중심대학 연합 SW FESTIVAL 대상</summary>
+        <div class="body">
+          <p class="meta"><b>SW중심대학연합, Korea</b> · Nov. 2025</p>
+          <img src="assets/awards/sw_festival_2025.jpg" alt="SW Festival 2025" />
+        </div>
+      </details>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">🛰️</span> 2025 NASA International Space Apps Challenge — GALACTIC PROBLEM SOLVER</summary>
+        <div class="body">
+          <p class="meta"><b>NASA, Korea</b> · Oct. 2025</p>
+          <img src="assets/awards/nasa_space_apps_2025.png" alt="NASA Space Apps 2025" />
+        </div>
+      </details>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">🎯</span> 2025 캡스톤 디자인 및 AI 해커톤 경진대회 장려상</summary>
+        <div class="body">
+          <p class="meta"><b>Korea Association of Computer Education, Korea</b> · Oct. 2025</p>
+          <img src="assets/awards/capstone_ai_hackathon_2025.png" alt="Capstone AI Hackathon 2025" />
+        </div>
+      </details>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">💰</span> 국가우수장학금(이공계)</summary>
+        <div class="body">
+          <p class="meta"><b>Ministry of Science and ICT (MSIT), Korea Scholarship Foundation</b> · Oct. 2025</p>
+          <p><i>Full tuition scholarship for junior and senior years</i></p>
+          <img src="assets/awards/scholarship_msit.png" alt="MSIT Scholarship" />
+        </div>
+      </details>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">📜</span> 2025 한국정보기술학회 하계 종합학술대회 우수논문상(금상)</summary>
+        <div class="body">
+          <p class="meta"><b>Korea Institute of Information Technology, Korea</b> · Jun. 2025</p>
+          <img src="assets/awards/kiit_best_paper_2025.png" alt="KIIT Best Paper 2025" />
+        </div>
+      </details>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">🎓</span> [교내] 2025 AI-Powered SW상상기업 경진대회 우수상</summary>
+        <div class="body">
+          <p class="meta"><b>Kyonggi University</b> · Oct. 2025</p>
+          <img src="assets/awards/sw_startup_award_2025.png" alt="SW Startup Award 2025" />
+        </div>
+      </details>
+
+      <details class="award reveal">
+        <summary><span class="award-icon">🏅</span> [교내] 2025 산학협력 캡스톤디자인 경진대회 은상</summary>
+        <div class="body">
+          <p class="meta"><b>Kyonggi University</b> · Jul. 2025</p>
+          <img src="assets/awards/capstone_industry_2025.png" alt="Capstone Industry 2025" />
+        </div>
+      </details>
+
+      <footer class="footer">© 2026 Jihoon Jeong</footer>
+    </div>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  // make award images zoomable
+  document.querySelectorAll('.award .body img').forEach(img => img.dataset.zoom = 'true');
+</script>
+</body>
+</html>

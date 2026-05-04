@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Publications — Jihoon Jeong</title>
+<link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<button class="menu-btn" aria-label="Toggle menu">☰</button>
+<button class="theme-toggle" aria-label="Toggle theme">☾</button>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img class="profile-img" src="assets/profile.jpg" alt="Jihoon Jeong" />
+      <h2 class="profile-name">Jihoon Jeong</h2>
+      <p class="profile-role">Undergraduate Researcher · Computer Vision &amp; AI</p>
+    </div>
+    <nav class="sidebar-section">
+      <ul class="sidebar-nav">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="projects.html">🚀 Projects</a></li>
+        <li><a href="awards.html">🏆 Awards</a></li>
+        <li><a href="programs.html">🎓 Programs</a></li>
+        <li><a href="certifications.html">📜 Certifications</a></li>
+        <li><a href="publications.html">📄 Publications</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-section">
+      <div class="contact-item"><span class="icon">📞</span> +82-10-9260-6744</div>
+      <div class="contact-item"><span class="icon">✉️</span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
+      <div class="contact-item"><span class="icon">🐙</span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
+      <div class="sidebar-info">Building efficient AI systems that transform complex visual data into practical value.</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="skill-label" style="margin-top:0;">Curriculum Vitae</div>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download>📄 Download CV</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      <header class="page-header reveal">
+        <h1>📄 Publications</h1>
+        <p class="subtitle">Peer-reviewed conference papers and academic publications.</p>
+      </header>
+
+      <section class="section reveal">
+        <h2>📌 Conference Papers</h2>
+
+        <article class="card card-clickable reveal" data-modal="modal-paper-focus" style="margin-bottom:18px;">
+          <h3>지능형 독서실에서 얼굴 및 행동 분석 기반 학습 집중도 시스템</h3>
+          <p class="meta">한국정보기술학회 하계 종합학술대회 · 2025</p>
+          <div class="tag-row">
+            <span class="tag">우수논문상 (금상)</span>
+            <span class="tag">First Author</span>
+          </div>
+        </article>
+
+        <article class="card card-clickable reveal" data-modal="modal-paper-fall">
+          <h3>객체 인식 기반 딥러닝을 활용한 노인 낙상 및 위험 상황 감지 시스템</h3>
+          <p class="meta">한국인터넷정보학회 추계학술발표대회 · 2024</p>
+          <div class="tag-row">
+            <span class="tag">Object Detection</span>
+            <span class="tag">Co-Author</span>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">© 2026 Jihoon Jeong</footer>
+    </div>
+  </main>
+</div>
+
+<!-- Modals -->
+<div class="modal-backdrop" id="modal-paper-focus">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>지능형 독서실에서 얼굴 및 행동 분석 기반 학습 집중도 시스템</h2>
+    <p><b>Authors</b><br/>Jihoon Jeong, Sieun Kim, Yeeun Kim, Eunseo Park, Seunga Seo, Seoryeong Jang, Kiyeon Ham</p>
+    <p><b>Conference</b><br/>한국정보기술학회 하계 종합학술대회 논문집</p>
+    <p><b>Year</b><br/>2025</p>
+    <h3>Abstract</h3>
+    <p>
+      This paper presents a vision-based learning concentration analysis system for
+      intelligent study environments. The proposed system analyzes facial expressions
+      and behavioral cues such as eye closure, yawning, head movement, and seat
+      departure to quantitatively evaluate learner focus levels.
+    </p>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-paper-fall">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>객체 인식 기반 딥러닝을 활용한 노인 낙상 및 위험 상황 감지 시스템</h2>
+    <p><b>Authors</b><br/>Bo-Gyeong Ko, Jeong-Yeon Park, Youn-A Lee, Seung-Jae Kim, Jihoon Jeong, Chae-Won Lee, Sieun Kim, Yeeun Kim, Seunga Seo</p>
+    <p><b>Conference</b><br/>한국인터넷정보학회 추계학술발표대회 논문집</p>
+    <p><b>Year</b><br/>2024</p>
+    <h3>Abstract</h3>
+    <p>
+      This study proposes a deep learning-based elderly fall and risk situation
+      detection system using object recognition techniques. The system aims to
+      improve safety monitoring by accurately detecting falls and hazardous
+      situations in indoor environments.
+    </p>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

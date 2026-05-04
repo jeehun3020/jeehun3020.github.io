@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jihoon Jeong — Portfolio</title>
+<meta name="description" content="Jihoon Jeong — Undergraduate Researcher in Computer Vision &amp; AI. Projects, awards, programs, and publications." />
+<link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<button class="menu-btn" aria-label="Toggle menu">☰</button>
+<button class="theme-toggle" aria-label="Toggle theme">☾</button>
+
+<div class="layout">
+
+  <!-- ============== Sidebar ============== -->
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img class="profile-img" src="assets/profile.jpg" alt="Jihoon Jeong" />
+      <h2 class="profile-name">Jihoon Jeong</h2>
+      <p class="profile-role">Undergraduate Researcher · Computer Vision &amp; AI</p>
+    </div>
+
+    <nav class="sidebar-section">
+      <ul class="sidebar-nav">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="projects.html">🚀 Projects</a></li>
+        <li><a href="awards.html">🏆 Awards</a></li>
+        <li><a href="programs.html">🎓 Programs</a></li>
+        <li><a href="certifications.html">📜 Certifications</a></li>
+        <li><a href="publications.html">📄 Publications</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-section">
+      <div class="contact-item"><span class="icon">📞</span> +82-10-9260-6744</div>
+      <div class="contact-item"><span class="icon">✉️</span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
+      <div class="contact-item"><span class="icon">🐙</span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
+
+      <div class="sidebar-info">
+        Building efficient AI systems that transform complex visual data into practical value.
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="skill-label" style="margin-top:0;">Curriculum Vitae</div>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download>📄 Download CV</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============== Main ============== -->
+  <main class="main">
+    <div class="container">
+
+      <!-- Hero -->
+      <section class="hero reveal">
+        <span class="eyebrow">Research Focus</span>
+        <h2>Bridging theoretical robustness and real-world deployment.</h2>
+        <p>Building efficient computer vision systems for intelligent, on-device AI.</p>
+      </section>
+
+      <!-- About -->
+      <section class="section reveal">
+        <h2>👤 About Me</h2>
+        <p>
+          I am a Bachelor student in <b>AI Computer Engineering at Kyonggi University</b>,
+          with research interests in Computer Vision, Image Segmentation, and Efficient Deep
+          Learning. I aim to design AI systems that are both theoretically grounded and
+          practically deployable.
+        </p>
+      </section>
+
+      <!-- Skills + Education -->
+      <section class="section col-2 reveal">
+        <div class="card">
+          <h3>🛠 Technical Skills</h3>
+          <div class="skill-label">Languages</div>
+          <ul class="skill-list">
+            <li>Python · R · SQL</li>
+          </ul>
+          <div class="skill-label">Frameworks</div>
+          <ul class="skill-list">
+            <li>PyTorch · TensorFlow · Keras</li>
+          </ul>
+          <div class="skill-label">Research Interests</div>
+          <div class="tag-row">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Image &amp; Semantic Segmentation</span>
+            <span class="tag">Vision-Language Multimodal Learning</span>
+            <span class="tag">Efficient / On-Device AI</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🎓 Education</h3>
+          <p style="margin-bottom:6px;"><b>Kyonggi University</b><br/>Department of AI Computer Engineering</p>
+          <ul class="skill-list" style="color:var(--text-muted);">
+            <li>Bachelor Student (Mar. 2021 – Present)</li>
+            <li>GPA: <b style="color:var(--text);">4.49 / 4.5</b></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Featured project -->
+      <section class="section reveal">
+        <h2>⭐ Featured Project</h2>
+        <a href="projects.html" class="card" style="display:block; text-decoration:none; color:inherit;">
+          <h3 style="color:var(--accent);">🎯 FocusAI — Intelligent Study Room System</h3>
+          <p>
+            Vision-based learning concentration analysis system using facial expression
+            and behavior recognition. Designed for real-world deployment in intelligent
+            study environments.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Behavior Recognition</span>
+            <span class="tag">Real-Time</span>
+          </div>
+          <p style="margin-top:14px; color:var(--accent); font-weight:600;">View Project Details →</p>
+        </a>
+      </section>
+
+      <!-- Explore -->
+      <section class="section reveal">
+        <h2>🔗 Explore</h2>
+        <div class="card-grid">
+          <a href="projects.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
+            <h3 style="color:var(--accent);">🚀 Projects</h3>
+            <p class="meta">Research and AI system development projects.</p>
+          </a>
+          <a href="programs.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
+            <h3 style="color:var(--accent);">🎓 Programs</h3>
+            <p class="meta">International programs and mentorship experiences.</p>
+          </a>
+          <a href="awards.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
+            <h3 style="color:var(--accent);">🏆 Awards</h3>
+            <p class="meta">Academic awards, competitions, and scholarships.</p>
+          </a>
+          <a href="publications.html" class="card card-clickable" style="text-decoration:none; color:inherit;">
+            <h3 style="color:var(--accent);">📄 Publications</h3>
+            <p class="meta">Peer-reviewed conference papers and publications.</p>
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer">© 2026 Jihoon Jeong · Built with HTML, CSS &amp; love</footer>
+    </div>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

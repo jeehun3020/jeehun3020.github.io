@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projects — Jihoon Jeong</title>
+<link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<button class="menu-btn" aria-label="Toggle menu">☰</button>
+<button class="theme-toggle" aria-label="Toggle theme">☾</button>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-profile">
+      <img class="profile-img" src="assets/profile.jpg" alt="Jihoon Jeong" />
+      <h2 class="profile-name">Jihoon Jeong</h2>
+      <p class="profile-role">Undergraduate Researcher · Computer Vision &amp; AI</p>
+    </div>
+    <nav class="sidebar-section">
+      <ul class="sidebar-nav">
+        <li><a href="index.html">🏠 Home</a></li>
+        <li><a href="projects.html">🚀 Projects</a></li>
+        <li><a href="awards.html">🏆 Awards</a></li>
+        <li><a href="programs.html">🎓 Programs</a></li>
+        <li><a href="certifications.html">📜 Certifications</a></li>
+        <li><a href="publications.html">📄 Publications</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-section">
+      <div class="contact-item"><span class="icon">📞</span> +82-10-9260-6744</div>
+      <div class="contact-item"><span class="icon">✉️</span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
+      <div class="contact-item"><span class="icon">🐙</span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
+      <div class="sidebar-info">Building efficient AI systems that transform complex visual data into practical value.</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="skill-label" style="margin-top:0;">Curriculum Vitae</div>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download>📄 Download CV</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+      <header class="page-header reveal">
+        <h1>🚀 Projects</h1>
+        <p class="subtitle">Selected research and development projects.</p>
+      </header>
+
+      <section class="card-grid">
+        <article class="card card-clickable reveal" data-modal="modal-airbender">
+          <h3>🛰️ AIRBENDER (Navi)</h3>
+          <p class="meta">NASA TEMPO-based Air Quality Forecasting System</p>
+          <div class="tag-row">
+            <span class="tag">Satellite Data</span>
+            <span class="tag">Vertex AI</span>
+            <span class="tag">LLM</span>
+          </div>
+        </article>
+
+        <article class="card card-clickable reveal" data-modal="modal-focusai">
+          <h3>🎯 FocusAI</h3>
+          <p class="meta">Vision-Based Real-Time Concentration Analysis System</p>
+          <div class="tag-row">
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Behavior Recognition</span>
+          </div>
+        </article>
+
+        <article class="card card-clickable reveal" data-modal="modal-distribot">
+          <h3>🤖 Distribot</h3>
+          <p class="meta">Multi-User LLM-Based Interview Simulation System</p>
+          <div class="tag-row">
+            <span class="tag">LLM</span>
+            <span class="tag">Multi-User</span>
+            <span class="tag">Real-Time</span>
+          </div>
+        </article>
+
+        <article class="card card-clickable reveal" data-modal="modal-focusdrive">
+          <h3>🚗 FocusDrive</h3>
+          <p class="meta">Real-Time Driver Drowsiness Detection System</p>
+          <div class="tag-row">
+            <span class="tag">OpenCV</span>
+            <span class="tag">AutoML Vision</span>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">© 2026 Jihoon Jeong</footer>
+    </div>
+  </main>
+</div>
+
+<!-- ============== Modals ============== -->
+<div class="modal-backdrop" id="modal-airbender">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>🛰️ AIRBENDER | Navi</h2>
+    <div class="gallery">
+      <img src="assets/projects/airbender1.png" alt="AIRBENDER 1" />
+      <img src="assets/projects/airbender2.png" alt="AIRBENDER 2" />
+      <img src="assets/projects/airbender3.png" alt="AIRBENDER 3" />
+      <img src="assets/projects/airbender4.png" alt="AIRBENDER 4" />
+    </div>
+    <p>
+      <b>AIRBENDER</b> is an AI-powered air quality forecasting system leveraging
+      <b>NASA TEMPO satellite data</b> to predict ozone levels and provide
+      personalized health recommendations.
+    </p>
+    <ul>
+      <li>Satellite &amp; meteorological data fusion</li>
+      <li>Vertex AI-based ozone forecasting</li>
+      <li>LLM-driven personalized alerts</li>
+    </ul>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/VvfAQruD_C0" title="AIRBENDER demo" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-focusai">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>🎯 FocusAI</h2>
+    <div class="gallery">
+      <img src="assets/projects/focusai_1.png" alt="FocusAI 1" />
+      <img src="assets/projects/focusai_2.png" alt="FocusAI 2" />
+    </div>
+    <p>
+      <b>FocusAI</b> analyzes learner concentration in real time by detecting facial
+      expressions and behaviors in intelligent learning environments.
+    </p>
+    <ul>
+      <li>Eye closure, yawning, head movement detection</li>
+      <li>Focus score calculation</li>
+      <li>Learning time analysis</li>
+    </ul>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-distribot">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>🤖 Distribot</h2>
+    <div class="gallery">
+      <img src="assets/projects/distribot_1.png" alt="Distribot 1" />
+      <img src="assets/projects/distribot_2.png" alt="Distribot 2" />
+      <img src="assets/projects/distribot_3.png" alt="Distribot 3" />
+      <img src="assets/projects/distribot_4.png" alt="Distribot 4" />
+    </div>
+    <p>
+      <b>Distribot</b> is a scalable, multi-user interview simulation system powered by
+      large language models.
+    </p>
+    <ul>
+      <li>Real-time multi-user interview sessions</li>
+      <li>LLM-based interviewer</li>
+      <li>Session &amp; time management</li>
+    </ul>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-focusdrive">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">✕</button>
+    <h2>🚗 FocusDrive</h2>
+    <div class="gallery">
+      <img src="assets/projects/focusdrive_1.png" alt="FocusDrive 1" />
+      <img src="assets/projects/focusdrive_2.png" alt="FocusDrive 2" />
+    </div>
+    <p>
+      <b>FocusDrive</b> detects driver drowsiness in real time using webcam input
+      and triggers immediate alerts.
+    </p>
+    <ul>
+      <li>OpenCV-based real-time frame capture</li>
+      <li>Vertex AI AutoML Vision classification</li>
+      <li>Immediate audio alert</li>
+    </ul>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/XolHcfSMTRQ" title="FocusDrive demo" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

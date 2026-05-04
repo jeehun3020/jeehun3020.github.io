@@ -1,0 +1,63 @@
+# Jihoon Jeong — Personal Portfolio
+
+Static portfolio website for **Jihoon Jeong** (Undergraduate Researcher · Computer Vision & AI), built as a refined HTML/CSS/JS port of the original [Streamlit version](https://github.com/jeehun3020/my-portfolio).
+
+🌐 **Live**: https://jeehun3020.github.io
+
+## Stack
+
+- Pure HTML / CSS / vanilla JS — no build step
+- Inter (Google Fonts)
+- Auto dark/light theme + manual toggle (persisted in `localStorage`)
+- Responsive sidebar layout (collapses on mobile)
+- Modal-based detail views, lightbox image zoom, scroll reveal
+
+## Pages
+
+| File                  | Page            |
+| --------------------- | --------------- |
+| `index.html`          | Home / About    |
+| `projects.html`       | Projects        |
+| `awards.html`         | Awards          |
+| `programs.html`       | Programs        |
+| `certifications.html` | Certifications  |
+| `publications.html`   | Publications    |
+
+## Local preview
+
+Just open `index.html` in a browser, or run a tiny static server:
+
+```bash
+cd ~/Desktop/mypage
+python3 -m http.server 8000
+# → http://localhost:8000
+```
+
+## Deploy to GitHub Pages (`jeehun3020.github.io`)
+
+```bash
+cd ~/Desktop/mypage
+
+git init
+git add .
+git commit -m "Initial portfolio site"
+git branch -M main
+
+# Create the user-site repo on GitHub first:
+#   https://github.com/new  →  name: jeehun3020.github.io  (public)
+
+git remote add origin https://github.com/jeehun3020/jeehun3020.github.io.git
+git push -u origin main
+```
+
+GitHub Pages auto-publishes a repo named `<user>.github.io` from the `main` branch. Within a minute, the site is live at https://jeehun3020.github.io.
+
+## Updating content
+
+- Text content lives directly in each `*.html` file (look for the `<main>` block).
+- Add new images under `assets/`. Image filenames are referenced in the HTML directly.
+- Replace `assets/profile.jpg` and `assets/Jihoon_Jeong_CV.pdf` to update profile photo / CV.
+
+## Credits
+
+© 2026 Jihoon Jeong
