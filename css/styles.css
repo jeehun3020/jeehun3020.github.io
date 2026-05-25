@@ -903,3 +903,130 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-xl { padding: 56px 28px 56px; min-height: 380px; }
   .scroll-hint { display: none; }
 }
+
+/* ==============================
+   Scroll progress bar (all pages)
+   ============================== */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  z-index: 200;
+  pointer-events: none;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.55);
+  border-bottom-right-radius: 2px;
+}
+
+/* ==============================
+   Hero name — flowing gradient
+   ============================== */
+.hero-name .grad {
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0%,
+    var(--accent-2) 25%,
+    #f472b6 50%,
+    var(--accent-2) 75%,
+    var(--accent) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nameGradient 6s linear infinite;
+}
+@keyframes nameGradient {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ==============================
+   Magnetic buttons
+   ============================== */
+[data-magnetic] {
+  transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.2, 1.2),
+              box-shadow 0.18s ease,
+              border-color 0.18s ease,
+              color 0.18s ease;
+  will-change: transform;
+}
+
+/* ==============================
+   Sidebar profile pulse aura
+   ============================== */
+.profile-img {
+  animation: avatarPulse 3.4s ease-in-out infinite;
+}
+@keyframes avatarPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px var(--accent),
+      0 0 0 0 rgba(99, 102, 241, 0.55),
+      var(--shadow-md);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--accent),
+      0 0 0 14px rgba(99, 102, 241, 0),
+      var(--shadow-md);
+  }
+}
+[data-theme="dark"] .profile-img,
+@media (prefers-color-scheme: dark) {
+  .profile-img {
+    animation-name: avatarPulseDark;
+  }
+}
+@keyframes avatarPulseDark {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px var(--accent),
+      0 0 0 0 rgba(168, 85, 247, 0.55),
+      var(--shadow-md);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2px var(--accent),
+      0 0 0 14px rgba(168, 85, 247, 0),
+      var(--shadow-md);
+  }
+}
+
+/* ==============================
+   Stagger reveal delays
+   (applied via inline style by JS;
+    these are baseline only)
+   ============================== */
+.reveal[data-delay="1"] { transition-delay: 60ms; }
+.reveal[data-delay="2"] { transition-delay: 120ms; }
+.reveal[data-delay="3"] { transition-delay: 180ms; }
+.reveal[data-delay="4"] { transition-delay: 240ms; }
+.reveal[data-delay="5"] { transition-delay: 300ms; }
+.reveal[data-delay="6"] { transition-delay: 360ms; }
+
+/* ==============================
+   Card glow on hover (subtle enhancement)
+   ============================== */
+.card:hover {
+  box-shadow:
+    0 12px 28px rgba(99, 102, 241, 0.14),
+    0 4px 8px rgba(99, 102, 241, 0.08),
+    0 0 0 1px color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+/* Respect reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .hero-name .grad,
+  .profile-img,
+  .hero-xl::before,
+  .hero-xl::after,
+  .hero-eyebrow .pulse::after,
+  .scroll-progress {
+    animation: none !important;
+    transition: none !important;
+  }
+  [data-magnetic] { transform: none !important; }
+}

@@ -252,6 +252,71 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==============================
+   Scroll progress bar (auto-injected)
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.scroll-progress')) return;
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.prepend(bar);
+
+  let ticking = false;
+  function update() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
+    bar.style.width = pct + '%';
+    ticking = false;
+  }
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  update();
+});
+
+/* ==============================
+   Magnetic buttons (cursor-pull)
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('[data-magnetic]').forEach((el) => {
+    const MAX = 10; // px pull
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+      const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+      el.style.transform = `translate(${(dx * MAX).toFixed(2)}px, ${(dy * MAX).toFixed(2)}px)`;
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.transform = '';
+    });
+  });
+});
+
+/* ==============================
+   Stagger reveal delays
+   (apply transition-delay to siblings in the same .reveal group)
+   ============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.reveal').forEach((el) => {
+    if (!el.parentElement) return;
+    const siblings = Array.from(el.parentElement.children).filter((c) =>
+      c.classList?.contains('reveal')
+    );
+    const idx = siblings.indexOf(el);
+    if (idx > 0) {
+      el.style.transitionDelay = `${Math.min(idx, 6) * 70}ms`;
+    }
+  });
+});
+
+/* ==============================
    Active nav highlighting
    ============================== */
 document.addEventListener('DOMContentLoaded', () => {
