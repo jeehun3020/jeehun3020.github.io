@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Jihoon Jeong — Portfolio</title>
+<title data-ko="정지훈 — 포트폴리오">Jihoon Jeong — Portfolio</title>
 <meta name="description" content="Jihoon Jeong — Undergraduate Researcher in Computer Vision &amp; AI." />
 <link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +15,7 @@
 
 <button class="menu-btn" aria-label="Toggle menu">☰</button>
 <button class="theme-toggle" aria-label="Toggle theme">☾</button>
+<button class="lang-toggle" aria-label="Switch language">한</button>
 
 <div class="layout">
 
@@ -22,19 +23,19 @@
   <aside class="sidebar">
     <div class="sidebar-profile">
       <img class="profile-img" src="assets/profile.jpg" alt="Jihoon Jeong" />
-      <h2 class="profile-name">Jihoon Jeong</h2>
-      <p class="profile-role">Undergraduate Researcher · Computer Vision &amp; AI</p>
+      <h2 class="profile-name" data-ko="정지훈">Jihoon Jeong</h2>
+      <p class="profile-role" data-ko="학부 연구생 · 컴퓨터 비전 &amp; AI">Undergraduate Researcher · Computer Vision &amp; AI</p>
     </div>
 
     <nav class="sidebar-section">
       <ul class="sidebar-nav">
-        <li><a href="index.html">🏠 Home</a></li>
-        <li><a href="projects.html">🚀 Projects</a></li>
-        <li><a href="research.html">🔬 Research</a></li>
-        <li><a href="awards.html">🏆 Awards</a></li>
-        <li><a href="programs.html">🎓 Programs</a></li>
-        <li><a href="certifications.html">📜 Certifications</a></li>
-        <li><a href="publications.html">📄 Publications</a></li>
+        <li><a href="index.html" data-ko="🏠 홈">🏠 Home</a></li>
+        <li><a href="projects.html" data-ko="🚀 프로젝트">🚀 Projects</a></li>
+        <li><a href="research.html" data-ko="🔬 연구">🔬 Research</a></li>
+        <li><a href="awards.html" data-ko="🏆 수상">🏆 Awards</a></li>
+        <li><a href="programs.html" data-ko="🎓 프로그램">🎓 Programs</a></li>
+        <li><a href="certifications.html" data-ko="📜 자격증">📜 Certifications</a></li>
+        <li><a href="publications.html" data-ko="📄 논문">📄 Publications</a></li>
       </ul>
     </nav>
 
@@ -42,15 +43,15 @@
       <div class="contact-item"><span class="icon">✉️</span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
       <div class="contact-item"><span class="icon">🐙</span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
 
-      <div class="sidebar-info">
+      <div class="sidebar-info" data-ko="복잡한 시각 데이터를 실질적인 가치로 바꾸는 효율적인 AI 시스템을 만듭니다.">
         Building efficient AI systems that transform complex visual data into practical value.
       </div>
     </div>
 
     <div class="sidebar-section">
-      <div class="skill-label" style="margin-top:0;">Curriculum Vitae</div>
+      <div class="skill-label" style="margin-top:0;" data-ko="이력서 (CV)">Curriculum Vitae</div>
       <div class="btn-row">
-        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download>📄 Download CV</a>
+        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download data-ko="📄 CV 다운로드">📄 Download CV</a>
       </div>
     </div>
   </aside>
@@ -62,24 +63,30 @@
       <!-- Interactive Hero -->
       <section class="hero-xl" data-spotlight>
         <span class="spotlight"></span>
-        <div class="hero-eyebrow"><span class="pulse"></span> Available for research collaboration</div>
+        <div class="hero-eyebrow" data-ko="&lt;span class=&quot;pulse&quot;&gt;&lt;/span&gt; 연구 협업 가능"><span class="pulse"></span> Available for research collaboration</div>
 
-        <h1 class="hero-name">
+        <h1 class="hero-name" data-ko="안녕하세요, &lt;span class=&quot;grad&quot;&gt;정지훈&lt;/span&gt;입니다">
           Hi, I'm <span class="grad">Jihoon Jeong</span>
         </h1>
 
         <p class="hero-roles">
-          I'm a
+          <span data-ko="저는">I'm a</span>
           <span class="typed" data-typewriter='[
             "Computer Vision Researcher.",
             "AI Engineer.",
             "Vision-Language Multimodal Learner.",
             "Efficient On-Device AI Builder.",
             "Lifelong Learner."
+          ]' data-ko-typewriter='[
+            "컴퓨터 비전 연구자입니다.",
+            "AI 엔지니어입니다.",
+            "비전-언어 멀티모달 학습자입니다.",
+            "효율적인 온디바이스 AI 개발자입니다.",
+            "평생 배우는 사람입니다."
           ]'></span>
         </p>
 
-        <p class="hero-bio">
+        <p class="hero-bio" data-ko="&lt;b&gt;경기대학교 AI컴퓨터공학부&lt;/b&gt; 학부생으로, 이론적으로 탄탄하면서 실제로 배포 가능한 AI 시스템을 설계합니다 — 위성 데이터 기반 예측부터 지능형 공간의 실시간 비전까지.">
           Bachelor student in <b>AI Computer Engineering at Kyonggi University</b>,
           designing AI systems that are both theoretically grounded and practically
           deployable — from satellite-driven forecasting to real-time vision in
@@ -87,9 +94,9 @@
         </p>
 
         <div class="hero-cta">
-          <a class="btn btn-primary" href="assets/Jihoon_Jeong_CV.pdf" data-magnetic download>📄 Download CV</a>
-          <a class="btn" href="projects.html" data-magnetic>🚀 View Projects</a>
-          <a class="btn" href="mailto:jeehun3020@gmail.com" data-magnetic>✉️ Get in touch</a>
+          <a class="btn btn-primary" href="assets/Jihoon_Jeong_CV.pdf" data-magnetic download data-ko="📄 CV 다운로드">📄 Download CV</a>
+          <a class="btn" href="projects.html" data-magnetic data-ko="🚀 프로젝트 보기">🚀 View Projects</a>
+          <a class="btn" href="mailto:jeehun3020@gmail.com" data-magnetic data-ko="✉️ 연락하기">✉️ Get in touch</a>
         </div>
       </section>
 
@@ -97,30 +104,30 @@
       <section class="stats" style="margin-top:32px;">
         <div class="stat reveal" data-tilt>
           <div class="stat-value"><span data-counter="4.49" data-decimals="2" data-suffix=" / 4.5">0</span></div>
-          <div class="stat-label">GPA</div>
+          <div class="stat-label" data-ko="학점">GPA</div>
         </div>
         <div class="stat reveal" data-tilt>
           <div class="stat-value"><span data-counter="8" data-suffix="+">0</span></div>
-          <div class="stat-label">Awards</div>
+          <div class="stat-label" data-ko="수상">Awards</div>
         </div>
         <div class="stat reveal" data-tilt>
           <div class="stat-value"><span data-counter="5" data-suffix="">0</span></div>
-          <div class="stat-label">Major Projects</div>
+          <div class="stat-label" data-ko="주요 프로젝트">Major Projects</div>
         </div>
         <div class="stat reveal" data-tilt>
           <div class="stat-value"><span data-counter="3" data-suffix="">0</span></div>
-          <div class="stat-label">Publications</div>
+          <div class="stat-label" data-ko="논문">Publications</div>
         </div>
         <div class="stat reveal" data-tilt>
           <div class="stat-value"><span data-counter="6" data-suffix="">0</span></div>
-          <div class="stat-label">Certifications</div>
+          <div class="stat-label" data-ko="자격증">Certifications</div>
         </div>
       </section>
 
       <!-- About -->
       <section class="section reveal">
-        <h2>👤 About Me</h2>
-        <p>
+        <h2 data-ko="👤 소개">👤 About Me</h2>
+        <p data-ko="저는 &lt;b&gt;경기대학교 AI컴퓨터공학부&lt;/b&gt; 학부생으로, 컴퓨터 비전, 이미지 분할, 효율적 딥러닝을 연구하고 있습니다. &lt;b&gt;NASA TEMPO 위성 기반 대기질 예측&lt;/b&gt;부터 &lt;b&gt;지능형 독서실의 실시간 얼굴·행동 분석&lt;/b&gt;까지, 이론적 견고함과 실제 배포를 잇는 시스템을 지향합니다.">
           I am a Bachelor student in <b>AI Computer Engineering at Kyonggi University</b>,
           with research interests in Computer Vision, Image Segmentation, and Efficient
           Deep Learning. I've worked on projects ranging from <b>NASA TEMPO satellite-based
@@ -128,7 +135,7 @@
           intelligent study rooms</b>, always aiming for systems that bridge theoretical
           robustness with practical deployment.
         </p>
-        <p>
+        <p data-ko="연구 외에도 저는 &lt;b&gt;무언가를 실제로 만들어 내놓는 일&lt;/b&gt;을 좋아합니다 — 해커톤에서 아이디어를 프로토타이핑하는 것부터, 연구 결과를 사람들이 직접 써볼 수 있는 데모로 옮기는 것까지.">
           Beyond research, I genuinely enjoy <b>shipping things</b> — from prototyping ideas
           at hackathons to translating findings into demos people can actually use.
         </p>
@@ -137,45 +144,46 @@
       <!-- Skills + Education -->
       <section class="section col-2 reveal">
         <div class="card" data-tilt>
-          <h3>🛠 Technical Skills</h3>
-          <div class="skill-label">Languages</div>
+          <h3 data-ko="🛠 기술 스택">🛠 Technical Skills</h3>
+          <div class="skill-label" data-ko="언어">Languages</div>
           <ul class="skill-list">
             <li>Python · R · SQL</li>
           </ul>
-          <div class="skill-label">Frameworks</div>
+          <div class="skill-label" data-ko="프레임워크">Frameworks</div>
           <ul class="skill-list">
             <li>PyTorch · TensorFlow · Keras</li>
           </ul>
-          <div class="skill-label">Research Interests</div>
+          <div class="skill-label" data-ko="연구 관심 분야">Research Interests</div>
           <div class="tag-row">
-            <span class="tag shimmer">Computer Vision</span>
-            <span class="tag shimmer">Image &amp; Semantic Segmentation</span>
-            <span class="tag shimmer">Vision-Language Multimodal Learning</span>
-            <span class="tag shimmer">Efficient / On-Device AI</span>
+            <span class="tag shimmer" data-ko="컴퓨터 비전">Computer Vision</span>
+            <span class="tag shimmer" data-ko="이미지 &amp; 시맨틱 분할">Image &amp; Semantic Segmentation</span>
+            <span class="tag shimmer" data-ko="비전-언어 멀티모달 학습">Vision-Language Multimodal Learning</span>
+            <span class="tag shimmer" data-ko="효율적 / 온디바이스 AI">Efficient / On-Device AI</span>
           </div>
         </div>
 
         <div class="card" data-tilt>
-          <h3>🎓 Education</h3>
-          <p style="margin-bottom:6px;"><b>Kyonggi University</b><br/>Department of AI Computer Engineering</p>
+          <h3 data-ko="🎓 학력">🎓 Education</h3>
+          <p style="margin-bottom:6px;" data-ko="&lt;b&gt;경기대학교&lt;/b&gt;&lt;br/&gt;AI컴퓨터공학부"><b>Kyonggi University</b><br/>Department of AI Computer Engineering</p>
           <ul class="skill-list" style="color:var(--text-muted);">
-            <li>Bachelor Student (Mar. 2021 – Present)</li>
-            <li>GPA: <b style="color:var(--text);">4.49 / 4.5</b></li>
+            <li data-ko="학부 재학 (2021.03 – 현재)">Bachelor Student (Mar. 2021 – Present)</li>
+            <li data-ko="학점: &lt;b style=&quot;color:var(--text);&quot;&gt;4.49 / 4.5&lt;/b&gt;">GPA: <b style="color:var(--text);">4.49 / 4.5</b></li>
           </ul>
-          <div class="skill-label" style="margin-top:18px;">Focus Areas</div>
+          <div class="skill-label" style="margin-top:18px;" data-ko="중점 분야">Focus Areas</div>
           <div class="tag-row">
             <span class="tag shimmer">AI</span>
-            <span class="tag shimmer">Deep Learning</span>
-            <span class="tag shimmer">Software Engineering</span>
+            <span class="tag shimmer" data-ko="딥러닝">Deep Learning</span>
+            <span class="tag shimmer" data-ko="소프트웨어 공학">Software Engineering</span>
           </div>
         </div>
       </section>
 
-      <footer class="footer">© 2026 Jihoon Jeong · Built with HTML, CSS &amp; love</footer>
+      <footer class="footer" data-ko="© 2026 정지훈 · HTML, CSS 그리고 애정으로 만들었습니다">© 2026 Jihoon Jeong · Built with HTML, CSS &amp; love</footer>
     </div>
   </main>
 </div>
 
+<script src="js/i18n.js?v=1"></script>
 <script src="js/main.js?v=3"></script>
 </body>
 </html>

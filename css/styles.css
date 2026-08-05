@@ -571,7 +571,8 @@ img { max-width: 100%; height: auto; display: block; }
 /* ==============================
    Theme toggle
    ============================== */
-.theme-toggle {
+.theme-toggle,
+.lang-toggle {
   position: fixed;
   top: 18px;
   right: 24px;
@@ -593,6 +594,18 @@ img { max-width: 100%; height: auto; display: block; }
   border-color: var(--accent);
   color: var(--accent);
   transform: rotate(15deg);
+}
+
+/* Language toggle sits left of the theme toggle */
+.lang-toggle {
+  right: 74px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.lang-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* Mobile menu button */

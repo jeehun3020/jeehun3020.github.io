@@ -154,11 +154,14 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.querySelector('[data-typewriter]');
   if (!el) return;
-  const phrases = JSON.parse(el.dataset.typewriter);
   let pIdx = 0, cIdx = 0, deleting = false;
 
   function tick() {
+    // re-read each tick so the language toggle can swap the phrase list live
+    const phrases = JSON.parse(el.dataset.typewriter);
+    if (pIdx >= phrases.length) pIdx = 0;
     const word = phrases[pIdx];
+    if (cIdx > word.length) cIdx = word.length;
     el.textContent = word.slice(0, cIdx);
     let delay = deleting ? 35 : 75;
 
