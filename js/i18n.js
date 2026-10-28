@@ -39,7 +39,8 @@
     btn.addEventListener('click', () => {
       lang = lang === 'ko' ? 'en' : 'ko';
       localStorage.setItem(KEY, lang);
-      apply(lang);
+      // crossfade() lives in main.js, which loads after this file but before any click
+      crossfade(() => apply(lang));
     });
   });
 })();

@@ -1,9 +1,27 @@
+/* Run a whole-page change as a short crossfade where the browser supports it */
+function crossfade(fn) {
+  if (!document.startViewTransition) return fn();
+  // A skipped transition (fast double-click, hidden tab) still runs fn; only the fade is dropped
+  document.startViewTransition(fn).ready.catch(() => {});
+}
+
 /* ==============================
    Theme toggle (light / dark / system)
    ============================== */
 (function () {
   const root = document.documentElement;
   const stored = localStorage.getItem('theme');
+
+  // Icons are drawn, never glyphs: one stroke weight, currentColor.
+  const SUN =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+    'stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/>' +
+    '<path d="M12 2.6v2.3M12 19.1v2.3M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.6 12h2.3' +
+    'M19.1 12h2.3M4.4 19.6l1.6-1.6M18 6l1.6-1.6"/></svg>';
+  const MOON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg>';
   if (stored === 'light' || stored === 'dark') {
     root.setAttribute('data-theme', stored);
   }
@@ -13,7 +31,7 @@
       root.getAttribute('data-theme') === 'dark' ||
       (!root.getAttribute('data-theme') &&
         window.matchMedia('(prefers-color-scheme: dark)').matches);
-    btn.textContent = isDark ? '☀' : '☾';
+    btn.innerHTML = isDark ? SUN : MOON;
     btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
   }
 
@@ -27,9 +45,11 @@
         current === 'dark' ||
         (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
       const next = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      setIcon(btn);
+      crossfade(() => {
+        root.setAttribute('data-theme', next);
+        setIcon(btn);
+      });
     });
   });
 })();
@@ -58,6 +78,7 @@ function openModal(id) {
 }
 
 function closeModal(modalEl) {
+  modalEl.querySelectorAll('video').forEach((v) => v.pause());
   modalEl.classList.remove('open');
   document.body.style.overflow = '';
 }
@@ -105,7 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!lightbox) {
     lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
-    lightbox.innerHTML = '<img alt="" />';
+    const shown = document.createElement('img');
+    shown.alt = 'Enlarged view';
+    lightbox.appendChild(shown);
     document.body.appendChild(lightbox);
   }
   const img = lightbox.querySelector('img');
@@ -117,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       (target.closest('.gallery') || target.dataset.zoom === 'true')
     ) {
       img.src = target.src;
-      img.alt = target.alt || '';
+      img.alt = target.alt || 'Enlarged view';
       lightbox.classList.add('open');
     } else if (target.closest('.lightbox')) {
       lightbox.classList.remove('open');
@@ -181,80 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==============================
-   Mouse-tracking spotlight
-   ============================== */
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('[data-spotlight]').forEach((el) => {
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty('--mx', ((e.clientX - r.left) / r.width) * 100 + '%');
-      el.style.setProperty('--my', ((e.clientY - r.top) / r.height) * 100 + '%');
-    });
-  });
-});
-
-/* ==============================
-   Animated counters
-   ============================== */
-document.addEventListener('DOMContentLoaded', () => {
-  const counters = document.querySelectorAll('[data-counter]');
-  if (!counters.length) return;
-
-  function animate(el) {
-    const target = parseFloat(el.dataset.counter);
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1400;
-    const start = performance.now();
-
-    function step(now) {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const value = (target * eased).toFixed(decimals);
-      el.textContent = value + suffix;
-      if (t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animate(entry.target);
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    counters.forEach((el) => io.observe(el));
-  } else {
-    counters.forEach(animate);
-  }
-});
-
-/* ==============================
-   Tilt cards (3D mouse parallax)
-   ============================== */
-document.addEventListener('DOMContentLoaded', () => {
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!isFinePointer) return;
-
-  document.querySelectorAll('[data-tilt]').forEach((el) => {
-    const max = 8; // degrees
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
-      el.style.transform =
-        `perspective(900px) rotateX(${(-py * max).toFixed(2)}deg) rotateY(${(px * max).toFixed(2)}deg) translateY(-2px)`;
-    });
-    el.addEventListener('pointerleave', () => {
-      el.style.transform = '';
-    });
-  });
-});
-
-/* ==============================
    Scroll progress bar (auto-injected)
    ============================== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -267,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function update() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const pct = max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0;
-    bar.style.width = pct + '%';
+    bar.style.transform = 'scaleX(' + pct / 100 + ')';
     ticking = false;
   }
   window.addEventListener(
@@ -284,25 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==============================
-   Magnetic buttons (cursor-pull)
-   ============================== */
-document.addEventListener('DOMContentLoaded', () => {
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  document.querySelectorAll('[data-magnetic]').forEach((el) => {
-    const MAX = 10; // px pull
-    el.addEventListener('pointermove', (e) => {
-      const r = el.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-      const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-      el.style.transform = `translate(${(dx * MAX).toFixed(2)}px, ${(dy * MAX).toFixed(2)}px)`;
-    });
-    el.addEventListener('pointerleave', () => {
-      el.style.transform = '';
-    });
-  });
-});
-
-/* ==============================
    Stagger reveal delays
    (apply transition-delay to siblings in the same .reveal group)
    ============================== */
@@ -314,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
     const idx = siblings.indexOf(el);
     if (idx > 0) {
-      el.style.transitionDelay = `${Math.min(idx, 6) * 70}ms`;
+      el.style.transitionDelay = `${Math.min(idx, 6) * 50}ms`;
     }
   });
 });

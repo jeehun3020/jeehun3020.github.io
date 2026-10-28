@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title data-ko="연구 — 정지훈">Research — Jihoon Jeong</title>
-<meta name="description" content="Active undergraduate research in efficient computer vision for aerial scene understanding." />
+<meta name="description" content="DR-SCA: a 2.05M-parameter UAV semantic segmentation network (Electronics, 2026), with results, figures, and limits." />
 <link rel="icon" href="assets/profile.jpg" type="image/jpeg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=3" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Gothic+A1:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=4" />
 <style>
 /* ===== Research page local styles ===== */
 .theme-card {
@@ -17,59 +17,89 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 24px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  position: relative;
-  overflow: hidden;
+  transition: border-color 0.12s var(--ease);
 }
-.theme-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-soft), transparent 50%);
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
+.theme-card:hover { border-color: var(--accent); }
+.theme-card h3 {
+  margin-bottom: 8px;
+  padding-top: 12px;
+  border-top: 2px solid var(--accent);
+  display: inline-block;
 }
-.theme-card:hover::before { opacity: 1; }
-.theme-card .icon {
-  display: inline-flex;
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  align-items: center; justify-content: center;
-  font-size: 1.3rem;
-  margin-bottom: 14px;
-}
-.theme-card h3 { margin-bottom: 8px; }
 
-/* Tradeoff chart */
+/* Featured paper — a citation block, ruled like a datasheet header */
+.paper {
+  border-top: 2px solid var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0 0;
+}
+.paper h3 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 12px; max-width: 40ch; }
+.paper .byline { margin: 0 0 4px; }
+.paper .venue { color: var(--text-muted); font-size: 0.85rem; margin: 0 0 16px; }
+.paper .stats { margin-top: 20px; border-bottom: 0; }
+.stat-note { color: var(--text-muted); font-size: 0.85rem; margin: 12px 0 0; }
+
+/* Figures — the paper's own plates */
+.fig { margin: 24px 0 0; }
+.fig img {
+  width: 100%;
+  background: #fff;            /* the plates are drawn on white; keep them legible on the board */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: zoom-in;
+}
+.fig figcaption { color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; max-width: var(--measure); }
+
+/* Real chart, drawn from Table 2 */
 .chart-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px;
-  position: relative;
+  padding: 24px 20px 16px;
 }
-.chart-wrap svg { width: 100%; height: auto; display: block; }
-.chart-wrap .legend {
-  display: flex; gap: 18px; flex-wrap: wrap;
-  margin-top: 14px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-.chart-wrap .legend-dot {
-  display: inline-block;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-.chart-axis { fill: var(--text-muted); font-size: 11px; font-family: inherit; }
+.chart { width: 100%; height: auto; display: block; }
+.chart-axis { fill: var(--text-muted); font-size: 14px; font-family: var(--font-display); }
 .chart-grid { stroke: var(--border); stroke-width: 1; stroke-dasharray: 3 4; }
-.dot { transition: r 0.18s ease, filter 0.18s ease; cursor: pointer; }
-.dot:hover { filter: drop-shadow(0 2px 6px rgba(99,102,241,0.45)); }
-.dot-mine { filter: drop-shadow(0 0 12px rgba(99,102,241,0.55)); }
+.chart-frame { stroke: var(--text-muted); stroke-width: 1; }
+.chart-front { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 4; }
+.chart-dot { fill: var(--text-muted); }
+.chart-dot.mine { fill: var(--accent); }
+.chart-label { fill: var(--text-muted); font-size: 14px; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+.chart-label.mine { fill: var(--accent); font-weight: 700; }
+
+/* Data tables — the signature component */
+.table-wrap { overflow-x: auto; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.data th {
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.data td { text-align: right; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.data tr:last-child td { border-bottom: 0; }
+.data th:first-child, .data td:first-child { text-align: left; }
+.data .sd { color: var(--text-muted); font-size: 0.75rem; }
+/* My row: ruled and bold; the name is the annotation, the numbers stay ink */
+.data tr.mine td { font-weight: 700; }
+.data tr.mine td:first-child { color: var(--accent); box-shadow: inset 2px 0 0 var(--accent); }
+.data .bar-cell { width: 40%; min-width: 120px; }
+.bar { display: block; height: 6px; background: var(--accent); }
+.table-note { color: var(--text-muted); font-size: 0.85rem; margin: 10px 0 0; }
+
+/* Limits — a ruled errata list */
+.limits { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
+.limits li { padding: 14px 0 14px 20px; border-bottom: 1px solid var(--border); position: relative; max-width: none; }
+.limits li::before { content: ""; position: absolute; left: 0; top: 23px; width: 8px; height: 2px; background: var(--accent); }
 
 /* Process timeline */
 .process {
@@ -84,90 +114,24 @@
   border-radius: var(--radius-sm);
   padding: 18px;
   position: relative;
-  transition: transform 0.18s ease, border-color 0.18s ease;
+  transition: border-color 0.12s var(--ease);
 }
-.process-step:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
-}
+.process-step:hover { border-color: var(--accent); }
 .process-step::before {
   counter-increment: step;
   content: counter(step, decimal-leading-zero);
-  font-size: 0.72rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.12em;
   display: block;
   margin-bottom: 4px;
 }
-.process-step h4 { margin: 0 0 4px; font-size: 0.98rem; }
-.process-step p { margin: 0; font-size: 0.83rem; color: var(--text-muted); line-height: 1.5; }
+.process-step h3 { margin: 0 0 4px; font-size: 1rem; }
+.process-step p { margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
-/* Locked card */
-.locked-card {
-  position: relative;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--accent) 6%, var(--surface)) 0 22px,
-      var(--surface) 22px 44px
-    );
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 56px 32px;
-  text-align: center;
-  overflow: hidden;
-}
-.locked-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 30%, transparent, var(--surface) 75%);
-  pointer-events: none;
-}
-.locked-card > * { position: relative; z-index: 1; }
-.locked-card .lock-icon {
-  font-size: 2.4rem;
-  display: inline-block;
-  padding: 14px 18px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  margin-bottom: 14px;
-}
-.locked-card h3 { margin: 0 0 4px; }
-.locked-card .lock-status {
-  display: inline-flex;
-  align-items: center; gap: 6px;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-top: 12px;
-}
-.locked-card .lock-status .dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  position: relative;
-}
-.locked-card .lock-status .dot::after {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: 50%; background: inherit;
-  animation: lockPulse 1.8s ease-out infinite;
-}
-@keyframes lockPulse {
-  0%   { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(3.5); opacity: 0; }
-}
-
-/* Tag cloud (with hover lift + small color variations) */
+/* Tag cloud */
 .cloud {
   display: flex; flex-wrap: wrap; gap: 10px;
   padding: 22px;
@@ -175,20 +139,12 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
-.cloud .tag {
-  padding: 8px 14px;
-  font-size: 0.92rem;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-.cloud .tag:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
-}
-.cloud .tag.lg  { font-size: 1.08rem; padding: 10px 16px; font-weight: 600; }
-.cloud .tag.md  { font-size: 0.98rem; }
-.cloud .tag.sm  { font-size: 0.82rem; opacity: 0.85; }
+.cloud .tag { padding: 6px 14px; font-size: 0.85rem; }
+.cloud .tag.lg  { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+.cloud .tag.md  { font-size: 1rem; }
+.cloud .tag.sm  { font-size: 0.75rem; }
 
-/* Question typing — reuse hero-roles styles for typed text */
+/* Open questions — typed */
 .questions {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -196,7 +152,8 @@
   padding: 28px 32px;
 }
 .questions .label {
-  font-size: 0.72rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--accent);
@@ -205,7 +162,8 @@
   display: block;
 }
 .questions .typed {
-  font-size: 1.35rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text);
   border-right: 2px solid var(--accent);
@@ -214,7 +172,7 @@
   display: inline;
 }
 .questions .quote-mark {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   color: var(--accent);
   opacity: 0.5;
   line-height: 0;
@@ -225,8 +183,8 @@
 </head>
 <body>
 
-<button class="menu-btn" aria-label="Toggle menu">☰</button>
-<button class="theme-toggle" aria-label="Toggle theme">☾</button>
+<button class="menu-btn" aria-label="Toggle menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<button class="theme-toggle" aria-label="Toggle theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/></svg></button>
 <button class="lang-toggle" aria-label="Switch language">한</button>
 
 <div class="layout">
@@ -238,24 +196,24 @@
     </div>
     <nav class="sidebar-section">
       <ul class="sidebar-nav">
-        <li><a href="index.html" data-ko="🏠 홈">🏠 Home</a></li>
-        <li><a href="projects.html" data-ko="🚀 프로젝트">🚀 Projects</a></li>
-        <li><a href="research.html" data-ko="🔬 연구">🔬 Research</a></li>
-        <li><a href="awards.html" data-ko="🏆 수상">🏆 Awards</a></li>
-        <li><a href="programs.html" data-ko="🎓 프로그램">🎓 Programs</a></li>
-        <li><a href="certifications.html" data-ko="📜 자격증">📜 Certifications</a></li>
-        <li><a href="publications.html" data-ko="📄 논문">📄 Publications</a></li>
+        <li><a href="index.html" data-ko="홈">Home</a></li>
+        <li><a href="projects.html" data-ko="프로젝트">Projects</a></li>
+        <li><a href="research.html" data-ko="연구">Research</a></li>
+        <li><a href="awards.html" data-ko="수상">Awards</a></li>
+        <li><a href="programs.html" data-ko="프로그램">Programs</a></li>
+        <li><a href="certifications.html" data-ko="자격증">Certifications</a></li>
+        <li><a href="publications.html" data-ko="논문">Publications</a></li>
       </ul>
     </nav>
     <div class="sidebar-section">
-      <div class="contact-item"><span class="icon">✉️</span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
-      <div class="contact-item"><span class="icon">🐙</span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
+      <div class="contact-item"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.8" y="5.2" width="18.4" height="13.6" rx="1.5"/><path d="m3.4 6.4 8.6 6.4 8.6-6.4"/></svg></span> <a href="mailto:jeehun3020@gmail.com">jeehun3020@gmail.com</a></div>
+      <div class="contact-item"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.2 20.4v-2.7c-3 .6-3.8-1.3-3.8-1.3-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.4-.3-4.9-1.2-4.9-5.4 0-1.2.4-2.2 1.1-2.9-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 1.1a10.3 10.3 0 0 1 5.5 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.7 1.1 1.7 1.1 2.9 0 4.2-2.5 5.1-4.9 5.4.4.3.8 1 .8 2.1v3.1"/></svg></span> <a href="https://github.com/jeehun3020" target="_blank" rel="noopener">github.com/jeehun3020</a></div>
       <div class="sidebar-info" data-ko="복잡한 시각 데이터를 실질적인 가치로 바꾸는 효율적인 AI 시스템을 만듭니다.">Building efficient AI systems that transform complex visual data into practical value.</div>
     </div>
     <div class="sidebar-section">
       <div class="skill-label" style="margin-top:0;" data-ko="이력서 (CV)">Curriculum Vitae</div>
       <div class="btn-row">
-        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download data-ko="📄 CV 다운로드">📄 Download CV</a>
+        <a class="btn btn-primary btn-block" href="assets/Jihoon_Jeong_CV.pdf" download data-ko="CV 다운로드">Download CV</a>
       </div>
     </div>
   </aside>
@@ -264,239 +222,263 @@
     <div class="container">
 
       <!-- Hero -->
-      <section class="hero-xl reveal" data-spotlight>
-        <span class="spotlight"></span>
-        <div class="hero-eyebrow" data-ko="&lt;span class=&quot;pulse&quot;&gt;&lt;/span&gt; 진행 중인 연구 · 학부생"><span class="pulse"></span> Active research · Undergraduate</div>
+      <section class="hero-xl">
+        <div class="hero-status" data-ko="&lt;span class=&quot;pulse&quot;&gt;&lt;/span&gt; &lt;span&gt;게재 완료 · &lt;i&gt;Electronics&lt;/i&gt;, 2026년 9월&lt;/span&gt;"><span class="pulse"></span> <span>Published · <i>Electronics</i>, Sept. 2026</span></div>
 
         <h1 class="hero-name">
           <span class="grad" data-ko="연구">Research</span>
         </h1>
 
         <p class="hero-roles">
-          <span data-ko="&lt;span style=&quot;color:var(--text); font-weight:600;&quot;&gt;세상을 위에서 내려다보는&lt;/span&gt; 효율적인 비전 시스템.">Efficient vision systems that <span style="color:var(--text); font-weight:600;">see the world from above</span>.</span>
+          <span data-ko="&lt;span style=&quot;color:var(--text); font-weight:600;&quot;&gt;드론 시점&lt;/span&gt;을 위한 경량 시맨틱 분할.">Compact segmentation for <span style="color:var(--text); font-weight:600;">the view from a drone</span>.</span>
         </p>
 
-        <p class="hero-bio" data-ko="저는 &lt;b&gt;컴퓨터 비전&lt;/b&gt;, &lt;b&gt;시맨틱 분할&lt;/b&gt;, &lt;b&gt;효율적 딥러닝&lt;/b&gt;이 만나는 지점에서 연구합니다 — 자원이 제한된 플랫폼에서 돌아갈 만큼 작으면서도, 실제 환경에서 의미를 가질 만큼 정확한 인식 모델을 설계합니다. 현재는 파라미터 하나, 밀리초 하나가 중요한 항공·UAV 영상에 집중하고 있습니다.">
-          I work at the intersection of <b>computer vision</b>, <b>semantic segmentation</b>, and
-          <b>efficient deep learning</b> — designing perception models that stay small enough
-          to run on resource-constrained platforms while still being accurate enough to matter
-          in the real world. My current focus is aerial / UAV imagery, where every parameter
-          and millisecond counts.
-        </p>
+        <p class="hero-bio" data-ko="항공·UAV 영상을 위한 컴퓨터 비전을 연구합니다. 배포할 수 있을 만큼 작고, 실제로 쓸모 있을 만큼 정확한 모델이 목표입니다. 첫 저널 논문인 &lt;b&gt;DR-SCA&lt;/b&gt;는 파라미터 205만 개짜리 분할 네트워크로, 세 가지 항공 벤치마크에서 처음부터 학습한 비교 모델 전부를 앞섰습니다. 그 우위가 어디서 끝나는지도 논문에 그대로 적었습니다.">I work on computer vision for aerial and UAV imagery, where a model has to be small enough to deploy and accurate enough to matter. My first journal paper, <b>DR-SCA</b>, is a 2.05M-parameter segmentation network that ranks first among every compared model trained from scratch on three aerial benchmarks — and says plainly where that lead ends.</p>
 
         <div class="hero-cta">
-          <a class="btn btn-primary" href="mailto:jeehun3020@gmail.com" data-magnetic data-ko="✉️ 협업 문의">✉️ Collaborate</a>
-          <a class="btn" href="projects.html" data-magnetic data-ko="🚀 프로젝트">🚀 Projects</a>
-          <a class="btn" href="publications.html" data-magnetic data-ko="📄 논문">📄 Publications</a>
+          <a class="btn btn-primary" href="https://www.mdpi.com/2079-9292/15/19/4396" target="_blank" rel="noopener" data-ko="논문 읽기">Read the paper</a>
+          <a class="btn" href="publications.html" data-ko="논문 목록">Publications</a>
+          <a class="btn" href="mailto:jeehun3020@gmail.com" data-ko="협업 문의">Collaborate</a>
+        </div>
+      </section>
+
+      <!-- Featured paper -->
+      <section class="section">
+        <h2 data-ko="대표 논문">Featured Paper</h2>
+        <article class="paper reveal">
+          <h3>DR-SCA: Directional Encoder Blocks and Semantic-Conditioned Coordinate Attention for UAV Semantic Segmentation</h3>
+          <p class="byline" data-ko="&lt;b&gt;Jihoon Jeong&lt;/b&gt; (제1저자) · Wangduk Seo (교신저자)"><b>Jihoon Jeong</b> (first author) · Wangduk Seo (corresponding)</p>
+          <p class="venue" data-ko="&lt;i&gt;Electronics&lt;/i&gt; 2026, 15(19), 4396 · 2026년 9월 24일 게재 · 오픈 액세스 (CC BY 4.0) · &lt;a href=&quot;https://doi.org/10.3390/electronics15194396&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;doi:10.3390/electronics15194396&lt;/a&gt;"><i>Electronics</i> 2026, 15(19), 4396 · Published 24 Sept. 2026 · Open access (CC BY 4.0) · <a href="https://doi.org/10.3390/electronics15194396" target="_blank" rel="noopener">doi:10.3390/electronics15194396</a></p>
+
+          <div class="stats">
+            <div class="stat"><div class="stat-value">61.75%</div><div class="stat-label" data-ko="UAVid mIoU">UAVid mIoU</div></div>
+            <div class="stat"><div class="stat-value">2.050M</div><div class="stat-label" data-ko="파라미터">Parameters</div></div>
+            <div class="stat"><div class="stat-value">2.95 ms</div><div class="stat-label" data-ko="A100 지연 시간">A100 latency</div></div>
+            <div class="stat"><div class="stat-value">+5.76 pp</div><div class="stat-label" data-ko="UNetFormer 대비">vs. UNetFormer</div></div>
+          </div>
+        </article>
+        <p class="stat-note" data-ko="UAVid 검증 세트 기준 10개 시드 평균이며, 모든 모델을 동일한 50에폭 프로토콜로 처음부터 학습했습니다. 지연 시간은 A100, 배치 1 기준입니다. DR-SCA의 파라미터 수는 UNetFormer의 14.8%입니다.">Ten-seed means on the UAVid validation split, every model trained from scratch under one shared 50-epoch protocol. Latency is batch 1 on an A100. DR-SCA uses 14.8% of UNetFormer’s parameters.</p>
+      </section>
+
+      <!-- Problem -->
+      <section class="section reveal">
+        <h2 data-ko="풀고자 한 문제">The Problem</h2>
+        <p data-ko="도시 드론 영상에는 경량 모델이 활용할 수 있는 두 가지 성질이 있습니다. 하나는 &lt;b&gt;방향성&lt;/b&gt;입니다. 도로와 건물 경계가 뚜렷한 가로·세로 선을 이룹니다. 다른 하나는 &lt;b&gt;구성의 편차&lt;/b&gt;입니다. 어떤 프레임은 대부분 지붕이고, 다음 프레임은 대부분 나무입니다. 첫째는 적극적으로 활용하고 둘째에는 적응하되, 추론 비용은 늘리지 않는 작은 네트워크를 만들고 싶었습니다.">Urban drone footage has two properties a compact model can use. It is <b>directional</b>: roads and building edges run in strong horizontal and vertical lines. And it is <b>uneven</b>: one frame is mostly roofs, the next mostly trees. I wanted a small network that leans on the first and adapts to the second — without paying for either at inference time.</p>
+      </section>
+
+      <!-- Method -->
+      <section class="section">
+        <h2 data-ko="방법">Method</h2>
+        <div class="card-grid">
+          <div class="theme-card reveal">
+            <h3 data-ko="D-Rep · 방향성 RepVGG">D-Rep · Directional RepVGG</h3>
+            <p class="meta" data-ko="학습할 때는 각 인코더 블록의 3×3 커널 옆에 가로 1×3, 세로 3×1 분기를 추가합니다. 배포 전에는 이 분기들을 하나의 3×3 합성곱으로 대수적으로 합치므로, 배포되는 그래프는 순수한 RepVGG 베이스와 똑같습니다. 더 무거운 Diverse Branch Block과 비교하면 정확도 차이 없이 학습 스텝 시간을 30.4%, 최대 메모리를 29.0% 줄입니다.">During training, each encoder block gets horizontal 1×3 and vertical 3×1 branches next to its 3×3 kernel. Before deployment they fold algebraically into a single 3×3 convolution, so the deployed graph is exactly the plain RepVGG base. Against the heavier Diverse Branch Block it cuts training step time by 30.4% and peak memory by 29.0%, with no significant accuracy difference.</p>
+          </div>
+          <div class="theme-card reveal">
+            <h3 data-ko="SCA · 의미 조건부 좌표 어텐션">SCA · Semantic-Conditioned Coordinate Attention</h3>
+            <p class="meta" data-ko="좌표 어텐션은 축별로 풀링하지만 장면 전체를 보는 경로가 없습니다. SCA는 같은 병목 특징에서 전역 디스크립터를 뽑고, 게이트를 만들기 전에 이를 FiLM 방식으로 축 디스크립터에 반영합니다. 병목에만 들어가며, 좌표 어텐션보다 파라미터가 약 0.003M 늘어납니다.">Coordinate Attention pools along each axis but has no explicit view of the whole scene. SCA derives a global descriptor from the same bottleneck feature and uses it to modulate the axis descriptor, FiLM-style, before the gates are produced. It sits only at the bottleneck and adds about 0.003M parameters over Coordinate Attention.</p>
+          </div>
+        </div>
+        <figure class="fig reveal">
+          <img src="assets/research/drsca_components.jpg" alt="Diagram: (a) the D-Rep block's training graph with 3×3, 1×3, 3×1, 1×1 and identity branches folding into one 3×3 convolution; (b) the SCA module conditioning the axis descriptor on a scene-level descriptor." data-zoom="true" loading="lazy" width="1800" height="878" />
+          <figcaption data-ko="(a) D-Rep의 학습용 분기는 하나의 3×3 합성곱으로 합쳐집니다. (b) SCA는 장면 단위 디스크립터로 축 디스크립터를 조건화합니다. 출처: Jeong &amp;amp; Seo (2026), CC BY 4.0.">(a) D-Rep’s training branches fold into one 3×3 convolution. (b) SCA conditions the axis descriptor on a scene-level descriptor. From Jeong &amp; Seo (2026), CC BY 4.0.</figcaption>
+        </figure>
+        <figure class="fig reveal">
+          <img src="assets/research/drsca_architecture.jpg" alt="Diagram: DR-SCA's four D-Rep encoder stages, the SCA bottleneck, and four decoder stages joined by skip connections." data-zoom="true" loading="lazy" width="1600" height="1077" />
+          <figcaption data-ko="전체 네트워크: D-Rep 인코더 4단계, 병목에만 들어가는 SCA, 가벼운 skip-fusion 디코더.">The full network: four D-Rep encoder stages, SCA at the bottleneck only, and a lightweight skip-fusion decoder.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Results -->
+      <section class="section">
+        <h2 data-ko="결과">Results</h2>
+        <p data-ko="UAVid에서의 정확도와 모델 크기. 점선은 두 축 모두에서 다른 모델에게 밀리지 않는 모델을 잇습니다. DR-SCA와 PIDNet-LW인데, PIDNet-LW는 조금 더 작지만 정확도가 15포인트 낮습니다.">Accuracy against size on UAVid. The dashed line joins the models no other model beats on both axes: DR-SCA and PIDNet-LW, which is slightly smaller but 15 points less accurate.</p>
+        <div class="chart-wrap reveal">
+<svg viewBox="0 0 720 372" role="img" aria-labelledby="chart-title" class="chart">
+  <title id="chart-title">UAVid validation mIoU against deployed parameters for six models trained from scratch. DR-SCA: 61.75% at 2.050M; UNetFormer 55.99% at 13.857M; RepSTDC 53.30% at 6.500M; ABCNet 53.27% at 13.427M; SegFormer-B0 50.17% at 3.716M; PIDNet-LW 46.33% at 1.874M.</title>
+  <line class="chart-grid" x1="76" y1="301.6" x2="690" y2="301.6"/><text class="chart-axis" x="66" y="305.6" text-anchor="end">45</text>
+  <line class="chart-grid" x1="76" y1="229.6" x2="690" y2="229.6"/><text class="chart-axis" x="66" y="233.6" text-anchor="end">50</text>
+  <line class="chart-grid" x1="76" y1="157.6" x2="690" y2="157.6"/><text class="chart-axis" x="66" y="161.6" text-anchor="end">55</text>
+  <line class="chart-grid" x1="76" y1="85.6" x2="690" y2="85.6"/><text class="chart-axis" x="66" y="89.6" text-anchor="end">60</text>
+  <line class="chart-grid" x1="144.2" y1="28" x2="144.2" y2="316"/><text class="chart-axis" x="144.2" y="336" text-anchor="middle">2</text>
+  <line class="chart-grid" x1="361.4" y1="28" x2="361.4" y2="316"/><text class="chart-axis" x="361.4" y="336" text-anchor="middle">5</text>
+  <line class="chart-grid" x1="525.7" y1="28" x2="525.7" y2="316"/><text class="chart-axis" x="525.7" y="336" text-anchor="middle">10</text>
+  <line class="chart-grid" x1="690.0" y1="28" x2="690.0" y2="316"/><text class="chart-axis" x="690.0" y="336" text-anchor="middle">20</text>
+  <line class="chart-frame" x1="76" y1="316" x2="690" y2="316"/><line class="chart-frame" x1="76" y1="28" x2="76" y2="316"/>
+  <text class="chart-axis" x="383" y="362" text-anchor="middle" data-ko="파라미터 수 (M, 로그 스케일) →">Parameters (M, log scale) →</text>
+  <text class="chart-axis" x="18" y="172" text-anchor="middle" transform="rotate(-90 18 172)">mIoU (%) →</text>
+  <line class="chart-front" x1="128.8" y1="282.4" x2="150.0" y2="60.4"/>
+  <circle class="chart-dot mine" cx="150.0" cy="60.4" r="7"/>
+  <text class="chart-label mine" x="162.0" y="50.4" text-anchor="start">DR-SCA · 61.75</text>
+  <circle class="chart-dot" cx="603.0" cy="143.3" r="5"/>
+  <text class="chart-label" x="593.0" y="133.3" text-anchor="end">UNetFormer · 55.99</text>
+  <circle class="chart-dot" cx="423.6" cy="182.1" r="5"/>
+  <text class="chart-label" x="423.6" y="168.1" text-anchor="middle">RepSTDC · 53.30</text>
+  <circle class="chart-dot" cx="595.5" cy="182.5" r="5"/>
+  <text class="chart-label" x="585.5" y="198.5" text-anchor="end">ABCNet · 53.27</text>
+  <circle class="chart-dot" cx="291.0" cy="227.2" r="5"/>
+  <text class="chart-label" x="301.0" y="243.2" text-anchor="start">SegFormer-B0 · 50.17</text>
+  <circle class="chart-dot" cx="128.8" cy="282.4" r="5"/>
+  <text class="chart-label" x="138.8" y="298.4" text-anchor="start">PIDNet-LW · 46.33</text>
+</svg>
+
+        </div>
+
+        <div class="table-wrap reveal" style="margin-top:28px;">
+          <table class="data">
+            <thead><tr>
+              <th data-ko="모델">Model</th><th data-ko="파라미터 (M)">Params (M)</th><th data-ko="A100 ms">A100 ms</th><th>UAVid</th><th>UDD6</th><th>LoveDA</th>
+            </tr></thead>
+            <tbody>
+              <tr class="mine"><td data-ko="DR-SCA (본 연구)">DR-SCA (mine)</td><td>2.050</td><td>2.95</td><td>61.75 <span class="sd">± 0.30</span></td><td>63.33 <span class="sd">± 0.42</span></td><td>43.50 <span class="sd">± 0.73</span></td></tr>
+              <tr><td>UNetFormer</td><td>13.857</td><td>5.67</td><td>55.99 <span class="sd">± 0.32</span></td><td>59.31 <span class="sd">± 0.46</span></td><td>37.94 <span class="sd">± 0.57</span></td></tr>
+              <tr><td>RepSTDC</td><td>6.500</td><td>5.01</td><td>53.30 <span class="sd">± 0.42</span></td><td>57.00 <span class="sd">± 0.72</span></td><td>41.63 <span class="sd">± 0.69</span></td></tr>
+              <tr><td>ABCNet</td><td>13.427</td><td>6.73</td><td>53.27 <span class="sd">± 0.24</span></td><td>53.44 <span class="sd">± 1.21</span></td><td>33.30 <span class="sd">± 1.00</span></td></tr>
+              <tr><td>SegFormer-B0</td><td>3.716</td><td>9.45</td><td>50.17 <span class="sd">± 0.43</span></td><td>45.56 <span class="sd">± 1.15</span></td><td>33.83 <span class="sd">± 2.46</span></td></tr>
+              <tr><td>PIDNet-LW</td><td>1.874</td><td>6.22</td><td>46.33 <span class="sd">± 0.41</span></td><td>46.34 <span class="sd">± 1.48</span></td><td>37.82 <span class="sd">± 0.73</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note" data-ko="mIoU (%), 10개 시드의 평균 ± 표준편차, 공식 검증 세트 기준. DR-SCA와의 모든 차이는 Bonferroni 보정 후에도 유의합니다.">mIoU (%), mean ± standard deviation over ten seeds, official validation splits. Every difference from DR-SCA is significant after Bonferroni correction.</p>
+
+        <h3 style="margin-top:36px;" data-ko="구성 요소별 기여">What Each Component Adds</h3>
+        <div class="table-wrap reveal">
+          <table class="data">
+            <thead><tr>
+              <th data-ko="변형">Variant</th><th data-ko="UAVid mIoU">UAVid mIoU</th><th data-ko="향상 (pp)">Gain (pp)</th><th class="bar-cell"></th>
+            </tr></thead>
+            <tbody>
+              <tr><td data-ko="베이스 (RepVGG 인코더)">Base (RepVGG encoder)</td><td>59.96</td><td>—</td><td class="bar-cell"></td></tr>
+              <tr><td>+ D-Rep</td><td>60.79</td><td>+0.83</td><td class="bar-cell"><span class="bar" style="width:46.1%"></span></td></tr>
+              <tr><td>+ SCA</td><td>60.97</td><td>+1.01</td><td class="bar-cell"><span class="bar" style="width:56.1%"></span></td></tr>
+              <tr class="mine"><td>+ D-Rep + SCA (DR-SCA)</td><td>61.75</td><td>+1.80</td><td class="bar-cell"><span class="bar" style="width:100.0%"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note" data-ko="두 향상치는 거의 그대로 더해지며, 배포 파라미터는 0.011M만 늘어납니다. 경량 베이스만으로도 이미 59.96%가 나오므로, 이 프로토콜에서 베이스라인 대비 우위의 대부분은 D-Rep이나 SCA가 아니라 베이스 설계에서 나옵니다.">The two gains add up almost exactly, for 0.011M extra deployed parameters. The compact base alone already scores 59.96%, so most of the lead over the baselines comes from the base design under this protocol, not from D-Rep or SCA.</p>
+      </section>
+
+      <!-- Qualitative -->
+      <section class="section">
+        <h2 data-ko="예측 결과">Predictions</h2>
+        <figure class="fig reveal" style="margin-top:0;">
+          <img src="assets/research/drsca_qualitative.jpg" alt="Grid of UAVid frames: input, ground truth, and predictions from RepSTDC, UNetFormer and DR-SCA, for two best and two worst frames." data-zoom="true" loading="lazy" width="1600" height="1440" />
+          <figcaption data-ko="DR-SCA 기준 점수가 가장 높은 UAVid 검증 프레임 2장과 가장 낮은 2장을 RepSTDC, UNetFormer와 나란히 놓았고, 각 예측 아래에 이미지별 mIoU를 적었습니다. 네 장 모두 DR-SCA가 가장 높지만, 더 중요한 것은 아래 두 줄입니다. 그림자가 진 비스듬한 시점과 좁은 도로는 제 모델을 포함해 모든 모델이 여전히 틀립니다. 클릭하면 확대됩니다.">The two highest- and two lowest-scoring UAVid validation frames for DR-SCA, next to RepSTDC and UNetFormer, with per-image mIoU under each prediction. DR-SCA scores highest on all four, but the bottom rows matter more: shadowed oblique views and thin roads still defeat every model, mine included. Click to enlarge.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Limits -->
+      <section class="section reveal">
+        <h2 data-ko="이 결과가 말하지 않는 것">Where the Result Stops</h2>
+        <ul class="limits">
+          <li data-ko="&lt;b&gt;처음부터 학습한 결과입니다.&lt;/b&gt; ImageNet 사전학습 인코더를 쓰면 UNetFormer, SegFormer-B0, ABCNet과의 격차는 각각 1.37, 0.64, 4.28포인트로 줄어듭니다."><b>Trained from scratch.</b> With ImageNet-pretrained encoders, the margin over UNetFormer, SegFormer-B0 and ABCNet narrows to 1.37, 0.64 and 4.28 points.</li>
+          <li data-ko="&lt;b&gt;공식 테스트 세트.&lt;/b&gt; 처음부터 학습한 모델 중에서는 DR-SCA가 1위(54.30%)지만, 사전학습한 SegFormer-B0이 1.23포인트 앞서고, 사전학습한 UNetFormer와는 통계적으로 차이가 없습니다."><b>Official test split.</b> DR-SCA is first among from-scratch models (54.30%), but pretrained SegFormer-B0 beats it by 1.23 points, and pretrained UNetFormer is statistically tied.</li>
+          <li data-ko="&lt;b&gt;속도는 장비에 따라 다릅니다.&lt;/b&gt; A100에서는 가장 빠르지만(2.95 ms), T4에서는 10.12 ms로 RepSTDC(4.90 ms)보다 느립니다."><b>Speed depends on the device.</b> Fastest on an A100 (2.95 ms), but on a T4 it takes 10.12 ms against RepSTDC’s 4.90 ms.</li>
+          <li data-ko="&lt;b&gt;블록 자체가 비슷한 블록보다 정확한 것은 아닙니다.&lt;/b&gt; D-Rep과 DBB·ACNet 방식 블록, SCA와 일반 좌표 어텐션 사이에는 유의한 정확도 차이가 없습니다. D-Rep의 장점은 학습 비용이고, SCA의 장점은 적은 비용으로 입력에 따라 보정한다는 점입니다."><b>The blocks are not more accurate than their neighbors.</b> D-Rep vs. DBB or an ACNet-style block, and SCA vs. plain Coordinate Attention, show no significant accuracy difference. D-Rep’s case is training cost; SCA’s is cheap input-conditioned recalibration.</li>
+          <li data-ko="&lt;b&gt;아직 드론에서 돌려보지 않았습니다.&lt;/b&gt; 임베디드 UAV 가속기에서의 지연 시간은 측정하지 않았고, 다음에 측정할 항목입니다."><b>Not yet on a drone.</b> Latency on embedded UAV accelerators is untested and is the next thing to measure.</li>
+        </ul>
+      </section>
+
+      <!-- Process timeline -->
+      <section class="section">
+        <h2 data-ko="연구하는 방식">How I Work</h2>
+        <div class="process">
+          <div class="process-step reveal">
+            <h3 data-ko="질문">Question</h3>
+            <p data-ko="선행 연구의 구체적인 공백이나 실제 배포의 불편함에서 출발합니다.">Start from a concrete gap in the literature or a deployment pain point.</p>
+          </div>
+          <div class="process-step reveal">
+            <h3 data-ko="읽고 재현하기">Read &amp; Reproduce</h3>
+            <p data-ko="강력한 베이스라인을 처음부터 다시 구현하며 완전히 체득합니다.">Re-implement strong baselines from scratch to internalize them.</p>
+          </div>
+          <div class="process-step reveal">
+            <h3 data-ko="가설 세우기">Hypothesize</h3>
+            <p data-ko="반증 가능한 주장을 세우고, 이를 검증할 가장 단순한 실험을 설계합니다.">Form a falsifiable claim, sketch the simplest experiment to test it.</p>
+          </div>
+          <div class="process-step reveal">
+            <h3 data-ko="실험">Experiment</h3>
+            <p data-ko="시드 10개, 모든 모델에 같은 프로토콜, 유리한 수치만 골라 쓰지 않기.">Ten seeds, one fixed protocol for every model, no cherry-picked numbers.</p>
+          </div>
+          <div class="process-step reveal">
+            <h3 data-ko="제거 실험">Ablate</h3>
+            <p data-ko="구성 요소를 하나씩 걷어내며 실제로 기여하는 것이 무엇인지 확인합니다.">Strip components one by one to see what actually contributes.</p>
+          </div>
+          <div class="process-step reveal">
+            <h3 data-ko="집필">Write</h3>
+            <p data-ko="명확한 그림이 먼저, 글은 그다음. 그리고 결과가 보여주지 않는 것을 따로 적습니다.">Clear figures first, prose second — and a section on what the result does not show.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Research questions (typing) -->
+      <section class="section reveal">
+        <h2 data-ko="저를 움직이는 질문들">Questions That Drive Me</h2>
+        <div class="questions">
+          <span class="label" data-ko="열린 질문">Open question</span>
+          <p style="margin:6px 0 0;">
+            <span class="quote-mark">“</span><span class="typed" data-typewriter='[
+              "Does an A100 latency lead survive on an embedded UAV accelerator?",
+              "Why do shadowed, oblique views still defeat every model?",
+              "How small can a vision model get before it stops being useful?",
+              "How much of a margin is the architecture, and how much is the protocol?",
+              "Can we measure efficiency honestly — end-to-end, not just FLOPs?"
+            ]' data-ko-typewriter='[
+              "A100에서의 속도 우위가 임베디드 UAV 가속기에서도 유지될까?",
+              "그림자 진 비스듬한 시점은 왜 여전히 모든 모델을 무너뜨릴까?",
+              "비전 모델은 쓸모를 잃기 전까지 얼마나 작아질 수 있을까?",
+              "성능 격차 중 얼마가 구조 덕이고, 얼마가 실험 프로토콜 덕일까?",
+              "효율성을 FLOPs가 아니라 엔드투엔드로 정직하게 측정할 수 있을까?"
+            ]'></span>
+          </p>
         </div>
       </section>
 
       <!-- Research directions -->
       <section class="section">
-        <h2 data-ko="🔭 연구 방향">🔭 Research Direction</h2>
+        <h2 data-ko="연구 방향">Research Direction</h2>
         <div class="card-grid">
-          <div class="theme-card reveal" data-tilt>
-            <span class="icon">🛰</span>
+          <div class="theme-card reveal">
             <h3 data-ko="항공 장면 이해">Aerial Scene Understanding</h3>
             <p class="meta" data-ko="드론·위성·감시 영상처럼 한 프레임 안에서도 스케일, 시점, 구조가 크게 달라지는 하향 시점 영상의 픽셀 단위 인식.">Pixel-level perception for top-down imagery — drones, satellites, surveillance — where scale, viewpoint, and structure vary dramatically across a single frame.</p>
           </div>
-          <div class="theme-card reveal" data-tilt>
-            <span class="icon">⚡</span>
-            <h3 data-ko="경량 &amp; 효율 네트워크">Compact &amp; Efficient Networks</h3>
+          <div class="theme-card reveal">
+            <h3 data-ko="경량 &amp;amp; 효율 네트워크">Compact &amp; Efficient Networks</h3>
             <p class="meta" data-ko="정확도를 포기하지 않으면서 파라미터·메모리·지연 시간 예산을 지키는 구조. 무엇을 더할지가 아니라 무엇을 &lt;i&gt;덜어낼&lt;/i&gt; 수 있는지를 묻습니다.">Architectures that respect strict parameter, memory, and latency budgets without surrendering accuracy. Asking what we can <i>remove</i>, not just what we add.</p>
           </div>
-          <div class="theme-card reveal" data-tilt>
-            <span class="icon">🧭</span>
+          <div class="theme-card reveal">
             <h3 data-ko="구조 인식 표현 학습">Structure-Aware Representation</h3>
             <p class="meta" data-ko="건물, 도로, 차량 등 장면에 존재하는 방향성·기하학적 규칙성을 인코딩하여, 작은 네트워크가 체급 이상의 성능을 내도록 합니다.">Encoding the directional and geometric regularities present in scenes — buildings, roads, vehicles — so small networks can punch above their weight.</p>
           </div>
-          <div class="theme-card reveal" data-tilt>
-            <span class="icon">🚀</span>
+          <div class="theme-card reveal">
             <h3 data-ko="실시간 / 온디바이스 추론">Real-Time / On-Device Inference</h3>
             <p class="meta" data-ko="연구 노트북에서 임베디드 GPU까지 — 지연 시간을 정직하게 측정하고, 엔드투엔드로 프로파일링하며, 배포를 일급 관심사로 다룹니다.">From research notebook to embedded GPU — measuring latency honestly, profiling end-to-end, and treating deployment as a first-class concern.</p>
           </div>
         </div>
       </section>
 
-      <!-- Trade-off chart -->
-      <section class="section">
-        <h2 data-ko="📊 제가 주목하는 트레이드오프">📊 The Trade-off I Care About</h2>
-        <p style="color:var(--text-muted); margin-bottom:18px;" data-ko="비전 모델은 정확도와 효율성 사이의 스펙트럼 위에 존재합니다. 정확도가 높은 모델 대부분은 엣지 배포에 너무 무겁고, 경량 모델 대부분은 정확도를 너무 많이 포기합니다. &lt;b style=&quot;color:var(--text);&quot;&gt;저는 왼쪽 위 모서리를 쫓고 있습니다.&lt;/b&gt;">
-          Vision models live on a spectrum between accuracy and efficiency. Most high-accuracy
-          models are too heavy for edge deployment; most lightweight models give up too much
-          accuracy. <b style="color:var(--text);">I am chasing the upper-left corner.</b>
-        </p>
-
-        <div class="chart-wrap reveal">
-          <svg viewBox="0 0 720 380" role="img" aria-label="Accuracy vs efficiency trade-off illustration">
-            <defs>
-              <radialGradient id="targetZone" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#6366f1" stop-opacity="0.20"/>
-                <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
-              </radialGradient>
-              <linearGradient id="mineGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#6366f1"/>
-                <stop offset="100%" stop-color="#a855f7"/>
-              </linearGradient>
-            </defs>
-
-            <!-- Target zone glow -->
-            <ellipse cx="160" cy="100" rx="160" ry="120" fill="url(#targetZone)"/>
-
-            <!-- Grid -->
-            <line class="chart-grid" x1="60" y1="60"  x2="680" y2="60"/>
-            <line class="chart-grid" x1="60" y1="160" x2="680" y2="160"/>
-            <line class="chart-grid" x1="60" y1="260" x2="680" y2="260"/>
-            <line class="chart-grid" x1="200" y1="40" x2="200" y2="320"/>
-            <line class="chart-grid" x1="400" y1="40" x2="400" y2="320"/>
-            <line class="chart-grid" x1="580" y1="40" x2="580" y2="320"/>
-
-            <!-- Axes -->
-            <line x1="60" y1="320" x2="680" y2="320" stroke="currentColor" stroke-opacity="0.4"/>
-            <line x1="60" y1="40"  x2="60"  y2="320" stroke="currentColor" stroke-opacity="0.4"/>
-
-            <!-- Axis labels -->
-            <text class="chart-axis" x="370" y="358" text-anchor="middle">Latency / Parameters &nbsp;→</text>
-            <text class="chart-axis" x="40"  y="180" text-anchor="middle" transform="rotate(-90 40 180)">Accuracy &nbsp;→</text>
-
-            <!-- Zone labels -->
-            <text class="chart-axis" x="160" y="56" font-weight="700" fill="#6366f1">↑ Where I aim</text>
-            <text class="chart-axis" x="560" y="80" font-weight="600" opacity="0.6">Heavy &amp; Accurate</text>
-            <text class="chart-axis" x="160" y="300" font-weight="600" opacity="0.6">Compact but Inaccurate</text>
-
-            <!-- Heavy models (top right) -->
-            <circle class="dot" cx="600" cy="80"  r="10" fill="#94a3b8"><title>Heavy model — accurate but too slow for edge</title></circle>
-            <circle class="dot" cx="540" cy="100" r="9"  fill="#94a3b8"><title>Heavy model — accurate but parameter-heavy</title></circle>
-            <circle class="dot" cx="500" cy="130" r="8"  fill="#94a3b8"><title>Mid–heavy model</title></circle>
-
-            <!-- Medium -->
-            <circle class="dot" cx="380" cy="180" r="9"  fill="#cbd5e1"><title>Mid-tier baseline</title></circle>
-            <circle class="dot" cx="320" cy="210" r="8"  fill="#cbd5e1"><title>Mid-tier baseline</title></circle>
-
-            <!-- Compact (bottom-left) -->
-            <circle class="dot" cx="160" cy="260" r="8"  fill="#cbd5e1"><title>Compact baseline — fast but loses accuracy</title></circle>
-            <circle class="dot" cx="220" cy="240" r="7"  fill="#cbd5e1"><title>Compact baseline</title></circle>
-            <circle class="dot" cx="120" cy="280" r="7"  fill="#cbd5e1"><title>Compact baseline</title></circle>
-
-            <!-- My direction (top-left, glowing pulse) -->
-            <circle cx="170" cy="100" r="22" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.5">
-              <animate attributeName="r"       values="14;30;14" dur="2.4s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite"/>
-            </circle>
-            <circle class="dot dot-mine" cx="170" cy="100" r="13" fill="url(#mineGrad)">
-              <title>My research direction — compact and accurate</title>
-            </circle>
-            <text class="chart-axis" x="195" y="106" fill="#6366f1" font-weight="700">★ My direction</text>
-          </svg>
-
-          <div class="legend">
-            <span data-ko="&lt;span class=&quot;legend-dot&quot; style=&quot;background:#94a3b8&quot;&gt;&lt;/span&gt; 대형 베이스라인"><span class="legend-dot" style="background:#94a3b8"></span> Heavy baselines</span>
-            <span data-ko="&lt;span class=&quot;legend-dot&quot; style=&quot;background:#cbd5e1&quot;&gt;&lt;/span&gt; 경량 / 중간 베이스라인"><span class="legend-dot" style="background:#cbd5e1"></span> Compact / mid baselines</span>
-            <span data-ko="&lt;span class=&quot;legend-dot&quot; style=&quot;background:linear-gradient(135deg,#6366f1,#a855f7)&quot;&gt;&lt;/span&gt; 제가 지향하는 지점"><span class="legend-dot" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></span> Where I aim</span>
-          </div>
-          <p style="margin-top:14px; font-size:0.8rem; color:var(--text-muted);">
-            <i data-ko="개념 설명용 그림이며, 실제 벤치마크 결과가 아닙니다.">Illustrative — not a benchmark plot.</i>
-          </p>
-        </div>
-      </section>
-
-      <!-- Research questions (typing) -->
-      <section class="section reveal">
-        <h2 data-ko="💭 저를 움직이는 질문들">💭 Questions That Drive Me</h2>
-        <div class="questions">
-          <span class="label" data-ko="열린 질문">Open question</span>
-          <p style="margin:6px 0 0;">
-            <span class="quote-mark">“</span><span class="typed" data-typewriter='[
-              "How small can a vision model get before it stops being useful?",
-              "What inductive biases let compact networks generalize beyond their training distribution?",
-              "Can we measure efficiency honestly — end-to-end, not just FLOPs?",
-              "How do we evaluate aerial-scene perception with statistical rigor?",
-              "When does adding complexity actually help, and when is it just noise?"
-            ]' data-ko-typewriter='[
-              "비전 모델은 쓸모를 잃기 전까지 얼마나 작아질 수 있을까?",
-              "어떤 귀납적 편향이 경량 네트워크를 학습 분포 밖으로 일반화시킬까?",
-              "효율성을 FLOPs가 아니라 엔드투엔드로 정직하게 측정할 수 있을까?",
-              "항공 장면 인식을 통계적으로 엄밀하게 평가하려면 어떻게 해야 할까?",
-              "복잡성을 더하는 것이 언제 실제로 도움이 되고, 언제 그저 잡음일까?"
-            ]'></span>
-          </p>
-        </div>
-      </section>
-
-      <!-- Process timeline -->
-      <section class="section">
-        <h2 data-ko="🛤 연구하는 방식">🛤 How I Work</h2>
-        <div class="process">
-          <div class="process-step reveal">
-            <h4 data-ko="질문">Question</h4>
-            <p data-ko="선행 연구의 구체적인 공백이나 실제 배포의 불편함에서 출발합니다.">Start from a concrete gap in the literature or a deployment pain point.</p>
-          </div>
-          <div class="process-step reveal">
-            <h4 data-ko="읽고 재현하기">Read &amp; Reproduce</h4>
-            <p data-ko="강력한 베이스라인을 처음부터 다시 구현하며 완전히 체득합니다.">Re-implement strong baselines from scratch to internalize them.</p>
-          </div>
-          <div class="process-step reveal">
-            <h4 data-ko="가설 세우기">Hypothesize</h4>
-            <p data-ko="반증 가능한 주장을 세우고, 이를 검증할 가장 단순한 실험을 설계합니다.">Form a falsifiable claim, sketch the simplest experiment to test it.</p>
-          </div>
-          <div class="process-step reveal">
-            <h4 data-ko="실험">Experiment</h4>
-            <p data-ko="다중 시드 학습, 고정된 프로토콜, 유리한 수치만 골라 쓰지 않기.">Multi-seed training, fixed protocols, no cherry-picked numbers.</p>
-          </div>
-          <div class="process-step reveal">
-            <h4 data-ko="제거 실험">Ablate</h4>
-            <p data-ko="구성 요소를 하나씩 걷어내며 실제로 기여하는 것이 무엇인지 확인합니다.">Strip components one by one to see what actually contributes.</p>
-          </div>
-          <div class="process-step reveal">
-            <h4 data-ko="집필">Write</h4>
-            <p data-ko="명확한 그림이 먼저, 글은 그다음. 그래프 하나가 문단 하나를 대체할 수 있다면 그렇게 해야 합니다.">Clear figures first, prose second. If a chart can replace a paragraph, it should.</p>
-          </div>
-        </div>
-      </section>
-
       <!-- Currently exploring (tag cloud) -->
       <section class="section reveal">
-        <h2 data-ko="🌱 요즘 탐색 중인 주제">🌱 Currently Exploring</h2>
+        <h2 data-ko="요즘 탐색 중인 주제">Currently Exploring</h2>
         <div class="cloud">
           <span class="tag lg" data-ko="항공 / UAV 영상">Aerial / UAV Imagery</span>
           <span class="tag lg" data-ko="시맨틱 분할">Semantic Segmentation</span>
+          <span class="tag md" data-ko="구조적 재매개변수화">Structural Re-parameterization</span>
           <span class="tag md" data-ko="경량 아키텍처">Compact Architectures</span>
-          <span class="tag md" data-ko="효율적 딥러닝">Efficient Deep Learning</span>
-          <span class="tag md" data-ko="실시간 추론">Real-Time Inference</span>
           <span class="tag md" data-ko="엣지 배포">Edge Deployment</span>
-          <span class="tag sm" data-ko="구조 인식 인코더">Structure-Aware Encoders</span>
+          <span class="tag md" data-ko="특징 단위 변조">Feature-wise Modulation</span>
           <span class="tag sm" data-ko="지연 시간 프로파일링">Latency Profiling</span>
           <span class="tag sm" data-ko="다중 시드 평가">Multi-Seed Evaluation</span>
-          <span class="tag sm" data-ko="손실 지형">Loss Landscape</span>
-          <span class="tag sm" data-ko="귀납적 편향">Inductive Biases</span>
-          <span class="tag sm" data-ko="강건성">Robustness</span>
+          <span class="tag sm" data-ko="소형 객체 분할">Small-Object Segmentation</span>
           <span class="tag sm" data-ko="도메인 간 일반화">Cross-Domain Generalization</span>
         </div>
       </section>
 
-      <!-- Locked manuscript preview -->
-      <section class="section reveal">
-        <h2 data-ko="🔒 최근 연구">🔒 Latest Work</h2>
-        <div class="locked-card">
-          <span class="lock-icon">🔒</span>
-          <h3 data-ko="심사 중인 논문">Manuscript Under Review</h3>
-          <p style="color:var(--text-muted); margin:6px 0 0; max-width:520px; margin-left:auto; margin-right:auto;" data-ko="항공 영상에서의 효율적인 픽셀 단위 장면 이해를 위한 새로운 접근. 현재 동료 심사 진행 중이며, 세부 내용·코드·결과는 요청 시 공유 가능합니다.">
-            A new approach for efficient pixel-level scene understanding in aerial imagery.
-            Currently in peer review — details, code, and results available upon request.
-          </p>
-          <div class="lock-status" data-ko="&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt; 심사 진행 중"><span class="dot"></span> In peer review</div>
-          <div style="margin-top:18px;">
-            <a class="btn btn-primary" href="mailto:jeehun3020@gmail.com?subject=Research%20inquiry" data-magnetic data-ko="✉️ 자세한 내용 요청">✉️ Request details</a>
-          </div>
-        </div>
-      </section>
-
-      <footer class="footer" data-ko="© 2026 정지훈 · 연구 관심사 및 방향 (미공개 결과 미포함)">© 2026 Jihoon Jeong · Research interests &amp; direction (no unpublished results)</footer>
+      <footer class="footer" data-ko="© 2026 정지훈 · 그림 출처: Jeong &amp;amp; Seo, &lt;i&gt;Electronics&lt;/i&gt; 2026, CC BY 4.0">© 2026 Jihoon Jeong · Figures from Jeong &amp; Seo, <i>Electronics</i> 2026, CC BY 4.0</footer>
     </div>
   </main>
 </div>
 
 <script src="js/i18n.js?v=1"></script>
-<script src="js/main.js?v=3"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>
